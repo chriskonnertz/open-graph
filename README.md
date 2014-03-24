@@ -36,7 +36,7 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
         ->siteName('Cookie Recipes Website')
         ->determiner('a');
 ```
-> If no argument is apssed to the `url` the current URL is applied.
+> If no argument is passed to the `url` method the current URL is applied.
 
 ### Add Tags With Attributes
 ```php
