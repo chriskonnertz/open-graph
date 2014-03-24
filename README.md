@@ -19,11 +19,11 @@ Render these tags in a template as follows:
 
     {{ $og->renderTags() }}
 
-Providing Open Graph tags enriches web pages. The downside is some extra time to spend, because every model has its own way to generate these tags. It's also important to follow the [official protocol](http://ogp.me/). Read the documentation to learn more about the tags that are available and the values they support. Please note that this implementation sticks to the specification of OGP.me and does not support the enhancements created by Facebook.
+Providing Open Graph tags enriches web pages. The downside is some extra time to spend, because every model has its own way to generate these tags. It's also important to follow the [official protocol](http://ogp.me/). Read the documentation to learn more about the tags that are available and the values they support or [check out examples](https://github.com/niallkennedy/open-graph-protocol-examples). Please note that this implementation sticks to the specification of OGP.me and does not support the enhancements created by Facebook.
 
-> A property can have multiple values. Add the property several times to achieve this effect.
+## Add Tags And Attributes
 
-## Add Basic Tags
+### Add Basic Tags
 
     $og->title('Apple Cookie')
         ->type('article')
@@ -34,7 +34,7 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
         ->siteName('Cookie Recipes Website')
         ->determiner('a');
 
-## Add Tags With Attributes
+### Add Tags With Attributes
 
     $og->image($imageUrl, [
             'width'     => 300,
@@ -51,7 +51,7 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
             'type'      => 'application/x-shockwave-flash'
         ]);
 
-## Add Type Attributes
+### Add Type Attributes
 
 Some object types (determined by the `type` tag) have their own attributes.
 
@@ -68,7 +68,7 @@ Some object types (determined by the `type` tag) have their own attributes.
         'last_name'     => 'Doe'
     ]);
 
-## Add Attributes
+### Add Attributes
 
 Facebook supports more than just the basic object types. To add attributes for off-the-record object types you may use the `attributes`method.
 
@@ -82,7 +82,9 @@ With custom validation rule:
 
 The only validation this method performs is to check if all attribute names match with the list of attribute names.
 
-## Add A Tag Several Times
+### Add A Tag Several Times
+
+A property can have multiple values. Add the tag several times to achieve this effect.
 
     $og->image('http://example.org/apple.jpg')
         ->image('http://example.org/tree.jpg');
@@ -107,19 +109,21 @@ Disable validation:
 
     $og->validate(false);
 
-## Determine If A Tag Exists
+## Miscellaneous
+
+### Determine If A Tag Exists
 
     $hasTitle = $og->has('title');
 
-## Remove Tag From The List
+### Remove Tag From The List
 
     $og->forget('title');
 
-## Add A Custom Tag
+### Add A Custom Tag
 
     $og->tag('apples', 7);
 
-## Get The Last Tag (By Name)
+### Get The Last Tag (By Name)
 
     $tag = $og->lastTag('image');
     $value = $tag['value'];
