@@ -34,7 +34,7 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
         ->locale('en_US')
         ->localeAlternate(['en_UK'])
         ->siteName('Cookie Recipes Website')
-        ->determiner('a');
+        ->determiner('an');
 ```
 > If no argument is passed to the `url` method the current URL is applied.
 
