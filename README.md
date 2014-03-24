@@ -100,7 +100,7 @@ Validation checks if tag values are legit and if attribute types are known.
 Enable validation by method:
 ```php
     $og->validate();
-
+```
 By constructor:
 ```php
     $og = new OpenGraph(true);
