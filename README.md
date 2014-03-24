@@ -18,7 +18,7 @@ Example:
 Render these tags in a template as follows:
 ```
     {{ $og->renderTags() }}
-
+```
 Providing Open Graph tags enriches web pages. The downside is some extra time to spend, because every model has its own way to generate these tags. It's also important to follow the [official protocol](http://ogp.me/). Read the documentation to learn more about the tags that are available and the values they support or [check out examples](https://github.com/niallkennedy/open-graph-protocol-examples). Please note that this implementation sticks to the specification of OGP.me and does not support the enhancements created by Facebook.
 
 ## Add Tags And Attributes
