@@ -3,14 +3,16 @@ open-graph
 
 Laravel 4 class that assists in building Open Graph meta tags.
 
+## Introduction
+
 Example:
 ```php
     $og = new OpenGraph();
 
-    $og->title($this->title)
+    $og->title('Apple Cookie')
         ->type('article')
-        ->image('uploads/newscats/'.$this->newscat->image)
-        ->description($this->intro)
+        ->image('http://example.org/apple.jpg')
+        ->description('Welcome to the best apple cookie recipe never created.')
         ->url();
 
     $this->openGraph($og);
@@ -34,6 +36,8 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
         ->siteName('Cookie Recipes Website')
         ->determiner('a');
 ```
+> If no argument is apssed to the `url` the current URL is applied.
+
 ### Add Tags With Attributes
 ```php
     $og->image($imageUrl, [
