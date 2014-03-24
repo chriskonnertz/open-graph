@@ -1,0 +1,22 @@
+{
+    "name": "chriskonnertz/open-graph",
+    "description": "Laravel class that assists in building Open Graph meta tags",
+    "keywords": ["opengraph", "laravel", "laravel4"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Konnertz",
+            "email": "siconize@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Chriskonnertz\\OpenGraph": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
