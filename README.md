@@ -11,7 +11,7 @@ Add `chriskonnertz/open-graph` to `composer.json`:
 
 Run `composer update` to get the latest version of Open Graph Builder.
 
-Add the alias:
+Add the alias to `app/config/app.php`:
 ```php
     'aliases' => array(
         // ...
