@@ -1,7 +1,23 @@
-open-graph
-==========
+Open Graph Builder
+==================
 
 Laravel 4 class that assists in building Open Graph meta tags.
+
+## Installation
+
+Add `chriskonnertz/open-graph` to `composer.json`:
+
+    "chriskonnertz/open-graph": "dev-master"
+
+Run `composer update` to get the latest version of Open Graph Builder.
+
+Add the alias:
+```php
+    'aliases' => array(
+        // ...
+        'OpenGraph' => 'Chriskonnertz\\OpenGraph\\OpenGraph',
+    )
+```
 
 ## Introduction
 
@@ -39,6 +55,8 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
 > If no argument is passed to the `url` method the current URL is applied.
 
 ### Add Tags With Attributes
+
+You may add `image`, `audio` or `video` tags and pass the basic value (the URL to the object) and an array of additional attributes.
 ```php
     $og->image($imageUrl, [
             'width'     => 300,
@@ -57,7 +75,7 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
 ```
 ### Add Type Attributes
 
-Some object types (determined by the `type` tag) have their own attributes.
+Some object types (determined by the `type` tag) have their own tags with attributes but not a basic tag. These are `article`, `book` and `profile`.
 ```php
     $og->article([
         'author'        => 'Jane Doe'
@@ -74,7 +92,7 @@ Some object types (determined by the `type` tag) have their own attributes.
 ```
 ### Add Attributes
 
-Facebook supports more than just the basic object types. To add attributes for off-the-record object types you may use the `attributes`method.
+Facebook supports more than just the basic object types. To add attributes for off-the-record object types you may use the `attributes` method.
 
 Without custom validation rule:
 ```php
