@@ -1,7 +1,7 @@
 {
     "name": "chriskonnertz/open-graph",
     "description": "Laravel class that assists in building Open Graph meta tags",
-    "keywords": ["opengraph", "laravel", "laravel4"],
+    "keywords": ["opengraph", "open graph", "laravel", "laravel4"],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "laravel/framework": "4.*"
+        "illuminate/support": "4.*"
     },
     "autoload": {
         "psr-0": {
