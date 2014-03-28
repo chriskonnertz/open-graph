@@ -95,10 +95,8 @@ class OpenGraph {
 
     /**
      * Remove all tags
-     * 
-     * @param  string  $name
      */
-    public function clear($name)
+    public function clear()
     {
         $this->tags = array();
 

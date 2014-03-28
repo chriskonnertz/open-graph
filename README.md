@@ -137,9 +137,13 @@ Disable validation:
 ```php
     $hasTitle = $og->has('title');
 ```
-### Remove Tag From The List
+### Remove A Tag From The List
 ```php
     $og->forget('title');
+```
+### Remove All Tags From The List
+```php
+    $og->clear();
 ```
 ### Add A Custom Tag
 ```php
