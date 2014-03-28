@@ -94,6 +94,18 @@ class OpenGraph {
     }
 
     /**
+     * Remove all tags
+     * 
+     * @param  string  $name
+     */
+    public function clear($name)
+    {
+        $this->tags = array();
+
+        return $this;
+    }
+
+    /**
      * Adds a custom tag to the list of tags
      * 
      * @param string $name
