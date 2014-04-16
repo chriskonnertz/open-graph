@@ -30,8 +30,6 @@ Example:
         ->image('http://example.org/apple.jpg')
         ->description('Welcome to the best apple cookie recipe never created.')
         ->url();
-
-    $this->openGraph($og);
 ```
 Render these tags in a template as follows:
 ```

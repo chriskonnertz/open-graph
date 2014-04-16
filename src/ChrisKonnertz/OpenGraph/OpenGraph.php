@@ -132,7 +132,7 @@ class OpenGraph {
                 }
             }
 
-            $this->tags[] = ['name' => $tagName.':'.$name, 'value' => $value];
+            $this->tags[] = array('name' => $tagName.':'.$name, 'value' => $value);
         }
 
         return $this;
@@ -154,7 +154,7 @@ class OpenGraph {
 
         $this->forget('title');
 
-        $this->tags[] = ['name' => 'title', 'value' => strip_tags($title)];
+        $this->tags[] = array('name' => 'title', 'value' => strip_tags($title));
 
         return $this;
     }
@@ -167,7 +167,7 @@ class OpenGraph {
      */
     public function type($type)
     {
-        $types = [
+        $types = array(
             'music.song',
             'music.album',
             'music.playlist',
@@ -180,7 +180,7 @@ class OpenGraph {
             'book',
             'profile',
             'website',
-        ];
+        );
 
         if ($this->validate and ! in_array($type, $types)) {
             throw new Exception("Open Graph: Invalid type '{$type}' (unknown type)");
@@ -188,7 +188,7 @@ class OpenGraph {
 
         $this->forget('type');
 
-        $this->tags[] = ['name' => 'type', 'value' => $type];
+        $this->tags[] = array('name' => 'type', 'value' => $type);
 
         return $this;
     }
@@ -215,15 +215,15 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid image URL '{$imageFile}'");
         }
 
-        $this->tags[] = ['name' => 'image', 'value' => $imageFile];
+        $this->tags[] = array('name' => 'image', 'value' => $imageFile);
 
         if ($attributes) {
-            $valid = [
+            $valid = array(
                 'secure_url',
                 'type',
                 'width',
                 'height',
-            ];
+            );
 
             $this->attributes('image', $attributes, $valid);
         }
@@ -250,7 +250,7 @@ class OpenGraph {
 
         $this->forget('description');
 
-        $this->tags[] = ['name' => 'description', 'value' => $description];
+        $this->tags[] = array('name' => 'description', 'value' => $description);
 
         return $this;
     }
@@ -271,7 +271,7 @@ class OpenGraph {
 
         $this->forget('url');
 
-        $this->tags[] = ['name' => 'url', 'value' => $url];
+        $this->tags[] = array('name' => 'url', 'value' => $url);
 
         return $this;
     }
@@ -290,7 +290,7 @@ class OpenGraph {
 
         $this->forget('locale');
 
-        $this->tags[] = ['name' => 'locale', 'value' => $locale];
+        $this->tags[] = array('name' => 'locale', 'value' => $locale);
 
         return $this;
     }
@@ -308,7 +308,7 @@ class OpenGraph {
                 throw new Exception("Open Graph: Invalid locale (item key: {$key})");
             }
 
-            $this->tags[] = ['name' => 'locale:alternate', 'value' => $locale];
+            $this->tags[] = array('name' => 'locale:alternate', 'value' => $locale);
         }
 
         return $this;
@@ -328,7 +328,7 @@ class OpenGraph {
 
         $this->forget('site_name');
 
-        $this->tags[] = ['name' => 'site_name', 'value' => $siteName];
+        $this->tags[] = array('name' => 'site_name', 'value' => $siteName);
 
         return $this;
     }
@@ -341,19 +341,19 @@ class OpenGraph {
      */
     public function determiner($determiner = '')
     {
-        $enum = [
+        $enum = array(
             'a', 
             'an', 
             'the',
             'auto',
             ''
-        ];
+        );
 
         if ($this->validate and ! in_array($determiner, $enum)) {
             throw new Exception("Open Graph: Invalid determiner '{$determiner}' (unkown value)");
         }
 
-        $this->tags[] = ['name' => 'determiner', 'value' => $determiner];
+        $this->tags[] = array('name' => 'determiner', 'value' => $determiner);
 
         return $this;
     }
@@ -380,51 +380,51 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid audio URL '{$audioFile}'");
         }
 
-        $this->tags[] = ['name' => 'audio', 'value' => $audioFile];
+        $this->tags[] = array('name' => 'audio', 'value' => $audioFile);
 
         if ($attributes) {
-            $valid = [
+            $valid = array(
                 'secure_url',
                 'type',
-            ];
+            );
 
             $tag = $this->lastTag('type');
 
             $specialValid = array();
 
             if ($tag and $tag == 'music.song') {
-                $specialValid = [
+                $specialValid = array(
                     'duration',
                     'album',
                     'album:disc',
                     'album:track',
                     'musician',
-                ];
+                );
             }
 
             if ($tag and $tag == 'music.album') {
-                $specialValid = [
+                $specialValid = array(
                     'song',
                     'song:disc',
                     'song:track',
                     'musician',
                     'release_date',
-                ];
+                );
             }
 
             if ($tag and $tag == 'music.playlist') {
-                $specialValid = [
+                $specialValid = array(
                     'song',
                     'song:disc',
                     'song:track',
                     'creator',
-                ];
+                );
             }
 
             if ($tag and $tag == 'music.radio_station') {
-                $specialValid = [
+                $specialValid = array(
                     'creator',
-                ];
+                );
             }
 
             $valid = array_merge($valid, $specialValid);
@@ -457,19 +457,19 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid video URL '{$videoFile}'");
         }
 
-        $this->tags[] = ['name' => 'video', 'value' => $videoFile];
+        $this->tags[] = array('name' => 'video', 'value' => $videoFile);
 
         if ($attributes) {
-            $valid = [
+            $valid = array(
                 'secure_url',
                 'type',
                 'width',
                 'height',
-            ];
+            );
 
             $tag = $this->lastTag('type');
             if ($tag and starts_with($tag['value'], 'video.')) {
-                $specialValid = [
+                $specialValid = array(
                     'actor',
                     'role',
                     'director',
@@ -477,7 +477,7 @@ class OpenGraph {
                     'duration',
                     'release_date',
                     'tag',
-                ];
+                );
 
                 if ($tag['value'] == 'video.episode') {
                     $specialValid[] = 'video:series';
@@ -505,14 +505,14 @@ class OpenGraph {
             throw new Exception("Open Graph: Type has to be 'article' to add article attributes");
         }
 
-        $valid = [
+        $valid = array(
             'published_time',
             'modified_time',
             'expiration_time',
             'author',
             'section',
             'tag',
-        ];
+        );
 
         $this->attributes('article', $attributes, $valid);
 
@@ -532,12 +532,12 @@ class OpenGraph {
             throw new Exception("Open Graph: Type has to be 'book' to add book attributes");
         }
 
-        $valid = [
+        $valid = array(
             'author',
             'isbn',
             'release_date',
             'tag',
-        ];
+        );
 
         $this->attributes('book', $attributes);
 
@@ -557,12 +557,12 @@ class OpenGraph {
             throw new Exception("Open Graph: Type has to be 'profile' to add profile attributes");
         }
 
-        $valid = [
+        $valid = array(
             'first_name',
             'last_name',
             'username',
             'gender',
-        ];
+        );
 
         $this->attributes('profile', $attributes);
 
