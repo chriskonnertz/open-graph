@@ -585,6 +585,16 @@ class OpenGraph {
     }
 
     /**
+     * Same as renderTags()
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->renderTags();
+    }
+
+    /**
      * Returns the last tag in the lists of tags with matching name
      * 
      * @param  string       $name The name of the tag
