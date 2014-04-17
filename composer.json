@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Chriskonnertz\\OpenGraph": "src/"
+            "ChrisKonnertz\\OpenGraph": "src/"
         }
     },
     "minimum-stability": "dev"
