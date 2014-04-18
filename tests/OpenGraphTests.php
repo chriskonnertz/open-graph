@@ -1,24 +1,16 @@
 <?php
 
-use Mockery as m;
-
-class TableLineTest extends PHPUnit_Framework_TestCase
+class OpenGraphTest extends \PHPUnit_Framework_TestCase
 {
-    protected $line;
-
-    public function setUp()
+    protected function getOpenGraph()
     {
-        $this->line = m::mock('ChrisKonnertz\OpenGraph\OpenGraph')->makePartial();
-    }
-
-    public function tearDown()
-    {
-        m::close();
+        return $this->getMockBuilder('ChrisKonnertz\OpenGraph\OpenGraph')
+                    ->getMock();
     }
 
     public function testBasicTags()
     {
-        $og = new OpenGraph();
+        $og = $this->getOpenGraph();
 
         $og->title('Apple Cookie')
             ->type('article')
