@@ -50,4 +50,13 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($og->has('type'));
     }
 
+    public function testRenderTags()
+    {
+        $og = $this->getDummy();
+
+        $html = $og->renderTags();
+
+        $hmtl = $og;
+    }
+
 }
