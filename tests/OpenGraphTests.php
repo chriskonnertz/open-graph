@@ -1,17 +1,19 @@
 <?php
 
-class OpenGraphTests extends \Orchestra\Testbench\TestCase {
+use Mockery as m;
 
-    protected function getPackageAliases()
-    {
-        return array(
-            'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraph'
-        );
-    }
+class TableLineTest extends PHPUnit_Framework_TestCase
+{
+    protected $line;
 
     public function setUp()
     {
-        parent::setUp();
+        $this->line = m::mock('ChrisKonnertz\OpenGraph\OpenGraph')->makePartial();
+    }
+
+    public function tearDown()
+    {
+        m::close();
     }
 
     public function testBasicTags()
