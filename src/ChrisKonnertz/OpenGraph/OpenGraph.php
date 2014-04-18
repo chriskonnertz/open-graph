@@ -1,6 +1,6 @@
 <?php namespace ChrisKonnertz\OpenGraph;
 
-use Exception, URL;
+use Exception;
 
 /**
  * Open Graph protocol official docs: http://ogp.me/
@@ -269,7 +269,11 @@ class OpenGraph {
      */
     public function url($url = null)
     {
-        if (! $url) $url = URL::current();
+        if (! $url) {
+            $url = 'http';
+            if (isset($_SERVER['HTTPS'])) $url .= 's';
+            $url .= "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+        } 
 
         if ($this->validate and ! filter_var($url, FILTER_VALIDATE_URL)) {
             throw new Exception("Open Graph: Invalid URL '{$url}'");
