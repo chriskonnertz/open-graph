@@ -1,22 +1,22 @@
 <?php
 
-class OpenGraphTest extends \PHPUnit_Framework_TestCase
+class OpenGraphTest extends PHPUnit_Framework_TestCase
 {
-    protected function getOpenGraph()
+    
+    protected function getInstance()
     {
-        return $this->getMockBuilder('ChrisKonnertz\OpenGraph\OpenGraph')
-                    ->getMock();
+        return new ChrisKonnertz\OpenGraph\OpenGraph();
     }
 
     public function testBasicTags()
     {
-        $og = $this->getOpenGraph();
+        $og = $this->getInstance();
 
         $og->title('Apple Cookie')
             ->type('article')
             ->image('http://example.org/apple.jpg')
             ->description('Welcome to the best apple cookie recipe never created.')
-            ->url();
+            ->url('http://example.org/');
     }
 
 }
