@@ -56,7 +56,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
 
         $html = $og->renderTags();
 
-        $hmtl = $og;
+        $hmtl = 'HTML: '.$og;
     }
 
 }
