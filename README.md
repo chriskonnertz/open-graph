@@ -1,7 +1,7 @@
-Open Graph Builder
-==================
+# Open Graph Builder
 
 [![Build Status](https://travis-ci.org/chriskonnertz/open-graph.png)](https://travis-ci.org/chriskonnertz/open-graph)
+
 Laravel 4 class that assists in building Open Graph meta tags.
 
 ## Installation
