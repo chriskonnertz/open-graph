@@ -3,7 +3,7 @@
 use Exception, URL;
 
 /**
- * Open Graph protocol officials docs: http://ogp.me/
+ * Open Graph protocol official docs: http://ogp.me/
  */
 class OpenGraph {
 
@@ -18,6 +18,12 @@ class OpenGraph {
      * @var boolean
      */
     protected $validate;
+
+    /**
+     * HTML code of the tag template. {{var}} will be replaced by the variable's value.
+     * @var string
+     */
+    protected $template = "<meta property=\"og:{{name}}\" content=\"{{value}}\" />\n";
 
     /**
      * Constructor call
@@ -570,6 +576,19 @@ class OpenGraph {
     }
 
     /**
+     * Set a template string for the render method.
+     * 
+     * @param  string $template The template string
+     * @return OpenGraph
+     */
+    public function template($template)
+    {
+        $this->template = $template;
+
+        return $this;
+    }
+
+    /**
      * Returns the Open Graph tags rendered as HTML
      * 
      * @return string
@@ -577,8 +596,9 @@ class OpenGraph {
     public function renderTags()
     {
         $output = '';
+        $vars   = array('{{name}}', '{{value}}');
         foreach ($this->tags as $tag) {
-            $output .= '<meta property="og:'.$tag['name'].'" content="'.$tag['value'].'" />'."\n";
+            $output .= str_replace($vars, array($tag['name'], $tag['value']), $this->template);
         }
 
         return $output;
