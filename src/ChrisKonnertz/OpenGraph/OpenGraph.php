@@ -247,6 +247,7 @@ class OpenGraph {
     public function description($description, $maxLength = 250)
     {
         $description = trim(strip_tags($description));
+        $description = preg_replace("/\r|\n/", '', $description);
 
         $length = strlen($description);
 
