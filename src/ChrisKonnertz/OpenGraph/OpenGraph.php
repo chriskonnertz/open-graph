@@ -201,7 +201,7 @@ class OpenGraph {
 
     /**
      * Adds an image tag.
-     * If the URL is relative its converted to an absolute one.
+     * If the URL is relative it's converted to an absolute one.
      * 
      * @param  string $imageFile    The URL of the image file
      * @param  array  $attributes   Array with additional attributes (pairs of name and value)
