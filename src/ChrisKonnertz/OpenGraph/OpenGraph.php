@@ -89,6 +89,7 @@ class OpenGraph {
      * Remove all tags with the given name
      * 
      * @param  string  $name
+     * @return void
      */
     public function forget($name)
     {
@@ -101,6 +102,8 @@ class OpenGraph {
 
     /**
      * Remove all tags
+     *
+     * @return void
      */
     public function clear()
     {
@@ -114,6 +117,7 @@ class OpenGraph {
      * 
      * @param string $name
      * @param string $value
+     * @return void
      */
     public function tag($name, $value)
     {
