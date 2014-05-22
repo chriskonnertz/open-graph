@@ -16,7 +16,7 @@ Add the alias to `app/config/app.php`:
 ```php
     'aliases' => array(
         // ...
-        'OpenGraph' => 'Chriskonnertz\\OpenGraph\\OpenGraph',
+        'OpenGraph' => 'ChrisKonnertz\\OpenGraph\\OpenGraph',
     )
 ```
 
