@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/chriskonnertz/open-graph.png)](https://travis-ci.org/chriskonnertz/open-graph)
 
-Laravel 4 class that assists in building Open Graph meta tags.
+Class that assists in building Open Graph meta tags.
 
 ## Installation
 
@@ -12,11 +12,11 @@ Add `chriskonnertz/open-graph` to `composer.json`:
 
 Run `composer update` to get the latest version of Open Graph Builder.
 
-Add the alias to `app/config/app.php`:
+In Laravel 4 you may add the alias to `app/config/app.php`:
 ```php
     'aliases' => array(
         // ...
-        'OpenGraph' => 'Chriskonnertz\\OpenGraph\\OpenGraph',
+        'OpenGraph' => 'ChrisKonnertz\\OpenGraph\\OpenGraph',
     )
 ```
 
