@@ -17,10 +17,28 @@ In Laravel 4 you may add an alias to `app/config/app.php`:
     'aliases' => array(
         // ...
         'OpenGraph' => 'ChrisKonnertz\\OpenGraph\\OpenGraph',
-    )
+    ),
 ```
 
 In Laravel 5 the path to this file is `config/app.php`.
+
+There is also a service provider and a facade. Add the facade to the config file:
+
+```php
+    'aliases' => array(
+        // ...
+        'OpenGraph'             => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
+    ),
+```
+
+To create an alias, add a new entry (or replace the one created before):
+
+```php
+    'aliases' => array(
+        // ...
+        'OpenGraph' => 'ChrisKonnertz\\OpenGraph\\OpenGraphFacade',
+    ),
+```
 
 ## Introduction
 
