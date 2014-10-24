@@ -20,7 +20,7 @@ In Laravel 4 you may add an alias to `app/config/app.php`:
     ),
 ```
 
-In Laravel 5 the path to this file is `config/app.php`.
+> In Laravel 5 the path to this file is `config/app.php`.
 
 There is also a service provider and a facade. Add the service provider to the config file:
 
