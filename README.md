@@ -22,16 +22,16 @@ In Laravel 4 you may add an alias to `app/config/app.php`:
 
 In Laravel 5 the path to this file is `config/app.php`.
 
-There is also a service provider and a facade. Add the facade to the config file:
+There is also a service provider and a facade. Add the service provider to the config file:
 
 ```php
-    'aliases' => array(
+    'providers' => array(
         // ...
-        'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
+        'ChrisKonnertz\OpenGraph\OpenGraphServiceProvider',
     ),
 ```
 
-To create an alias, add a new entry (or replace the one created before):
+To create an alias for the facade, add a new entry (or replace the one created before):
 
 ```php
     'aliases' => array(
