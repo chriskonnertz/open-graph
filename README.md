@@ -27,7 +27,7 @@ There is also a service provider and a facade. Add the facade to the config file
 ```php
     'aliases' => array(
         // ...
-        'OpenGraph'             => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
+        'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
     ),
 ```
 
