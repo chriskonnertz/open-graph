@@ -20,6 +20,8 @@ In Laravel 4 you may add an alias to `app/config/app.php`:
     )
 ```
 
+In Laravel 5 the path to this file is `config/app.php`.
+
 ## Introduction
 
 Example:
