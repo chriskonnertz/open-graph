@@ -16,7 +16,7 @@ In Laravel 4 you may add an alias to `app/config/app.php`:
 ```php
     'aliases' => array(
         // ...
-        'OpenGraph' => 'ChrisKonnertz\\OpenGraph\\OpenGraph',
+        'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraph',
     ),
 ```
 
@@ -36,7 +36,7 @@ To create an alias for the facade, add a new entry (or replace the one created b
 ```php
     'aliases' => array(
         // ...
-        'OpenGraph' => 'ChrisKonnertz\\OpenGraph\\OpenGraphFacade',
+        'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
     ),
 ```
 
