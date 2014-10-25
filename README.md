@@ -12,6 +12,8 @@ Add `chriskonnertz/open-graph` to `composer.json`:
 
 Run `composer update` to get the latest version of Open Graph Builder.
 
+### Framework Support
+
 In Laravel 4 you may add an alias to `app/config/app.php`:
 ```php
     'aliases' => array(
