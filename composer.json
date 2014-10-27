@@ -1,6 +1,6 @@
 {
     "name": "chriskonnertz/open-graph",
-    "description": "Laravel class that assists in building Open Graph meta tags",
+    "description": "Class that assists in building Open Graph meta tags",
     "keywords": ["opengraph", "open graph", "laravel", "laravel4"],
     "license": "MIT",
     "authors": [
