@@ -42,6 +42,8 @@ To create an alias for the facade, add a new entry (or replace the one created b
     ),
 ```
 
+> If you need to reset the underlying instance call `OpenGraph::clear()`.
+
 ## Introduction
 
 Example:
