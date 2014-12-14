@@ -568,7 +568,7 @@ class OpenGraph {
     public function profile($attributes = array())
     {
         $tag = $this->lastTag('type');
-        if (! $tag or $tag['value'] != 'book') {
+        if (! $tag or $tag['value'] != 'profile') {
             throw new Exception("Open Graph: Type has to be 'profile' to add profile attributes");
         }
 
