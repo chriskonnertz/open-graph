@@ -1,5 +1,6 @@
 # Open Graph Builder
 
+[![Monthly Downloads](https://img.shields.io/npm/dm/localeval.svg)](https://packagist.org/packages/chriskonnertz/open-graph)
 [![Build Status](https://travis-ci.org/chriskonnertz/open-graph.png)](https://travis-ci.org/chriskonnertz/open-graph)
 
 Class that assists in building Open Graph meta tags.
