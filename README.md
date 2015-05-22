@@ -78,6 +78,8 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
 ```
 > If no argument is passed to the `url` method the current URL is applied.
 
+Note that `DateTime` objects will be converted to ISO 8601 strings.
+
 ### Add Tags With Attributes
 
 You may add `image`, `audio` or `video` tags and pass the basic value (the URL to the object) and an array of additional attributes.
