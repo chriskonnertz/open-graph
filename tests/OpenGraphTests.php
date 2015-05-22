@@ -41,13 +41,28 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $og = $this->getDummy();
 
         $og->tag('fruit', 'apple');
-         $this->assertTrue($og->has('fruit'));
+        $this->assertTrue($og->has('fruit'));
 
         $og->forget('title');
         $this->assertFalse($og->has('title'));
 
         $og->clear();
         $this->assertFalse($og->has('type'));
+    }
+
+    public function testDateConversion()
+    {
+        $og = $this->getDummy();
+
+        $dateTime = new DateTime();
+        $dateTime->setTimestamp(1234567890);
+
+        $og->tag('datetime', $dateTime);
+
+        $tag = $og->lastTag();
+        $value = $tag['value'];
+
+        $this->assertEquals($value, '2009-02-13T23:31:30O');
     }
 
     public function testRenderTags()

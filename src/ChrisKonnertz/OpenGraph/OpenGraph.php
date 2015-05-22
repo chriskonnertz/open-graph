@@ -1,6 +1,7 @@
 <?php namespace ChrisKonnertz\OpenGraph;
 
 use Exception;
+use DateTime;
 
 /**
  * Open Graph protocol official docs: http://ogp.me/
@@ -121,6 +122,8 @@ class OpenGraph {
      */
     public function tag($name, $value)
     {
+        $value = $this->convertDate($value);
+
         $this->tags[] = compact('name', 'value');
 
         return $this;
@@ -141,6 +144,8 @@ class OpenGraph {
                     throw new Exception("Open Graph: Invalid attribute '{$name}' (unknown type)");
                 }
             }
+
+            $value = $this->convertDate($value);
 
             $this->tags[] = array('name' => $tagName.':'.$name, 'value' => $value);
         }
@@ -638,6 +643,21 @@ class OpenGraph {
         }
 
         return null;
+    }
+
+    /**
+     * Converts a DateTime object to a string (ISO 8601)
+     * 
+     * @param  string|DateTime $date The date (string or DateTime)
+     * @return string
+     */
+    protected function convertDate($date)
+    {
+        if ($date instanceof DateTime) {
+            return (string) $date->format(DateTime::ISO8601);
+        }
+
+        return $date;
     }
 
 }
