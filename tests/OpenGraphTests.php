@@ -59,9 +59,10 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
 
         $og->tag('datetime', $dateTime);
 
-        $tag = $og->lastTag();
+        $tag = $og->lastTag('datetime');
         $value = $tag['value'];
 
+        // ISO 8601
         $this->assertEquals($value, '2009-02-13T23:31:30O');
     }
 
