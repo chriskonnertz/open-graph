@@ -629,10 +629,12 @@ class OpenGraph {
      * @param  string       $name The name of the tag
      * @return array|null   Returns the tag (array with name and value) or null
      */
-    protected function lastTag($name)
+    public function lastTag($name)
     {
         foreach ($this->tags as $tag) {
-            if ($tag['name'] == $name) return $tag;
+            if ($tag['name'] == $name) {
+                return $tag;
+            }
         }
 
         return null;
