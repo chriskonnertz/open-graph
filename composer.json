@@ -5,8 +5,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Chris Konnertz",
-            "email": "siconize@gmail.com"
+            "name": "Chris Konnertz"
         }
     ],
     "require": {
