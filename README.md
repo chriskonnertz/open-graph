@@ -15,7 +15,7 @@ Run `composer update` to get the latest version of Open Graph Builder.
 
 ### Framework Support
 
-In Laravel 4 you may add an alias to `app/config/app.php`:
+In Laravel 5 you may add an alias to `config/app.php`:
 ```php
     'aliases' => array(
         // ...
@@ -23,7 +23,7 @@ In Laravel 4 you may add an alias to `app/config/app.php`:
     ),
 ```
 
-> In Laravel 5 the path to this file is `config/app.php`.
+> In Laravel 4 the path to this file is `app/config/app.php`.
 
 There is also a service provider and a facade. Add the service provider to the config file:
 
@@ -43,7 +43,7 @@ To create an alias for the facade, add a new entry (or replace the one created b
     ),
 ```
 
-> If you need to reset the underlying instance call `OpenGraph::clear()`.
+> If you need to reset the underlying instance of the facade (the `OpenGraph` object), call `OpenGraph::clear()`.
 
 ## Introduction
 
@@ -59,8 +59,11 @@ Example:
 ```
 Render these tags in a template as follows:
 ```
-    {{ $og->renderTags() }}
+    {!! $og->renderTags(!! }}
 ```
+
+> In Laravel 4 you have to use ``{{ ... }}`` tags to avoid escaping.
+
 Providing Open Graph tags enriches web pages. The downside is some extra time to spend, because every model has its own way to generate these tags. It's also important to follow the [official protocol](http://ogp.me/). Read the documentation to learn more about the tags that are available and the values they support or [check out examples](https://github.com/niallkennedy/open-graph-protocol-examples). Please note that this implementation sticks to the specification of OGP.me and does not support the enhancements created by Facebook.
 
 ## Add Tags And Attributes
