@@ -52,6 +52,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
 
     public function testDateConversion()
     {
+        /* Classic DateTime ---------------------------------------------------------------------------- */
         $og = $this->getDummy();
 
         $dateTime = new DateTime();
@@ -62,8 +63,20 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $tag = $og->lastTag('datetime');
         $value = $tag['value'];
 
-        // ISO 8601
-        $this->assertEquals($value, '2009-02-13T23:31:30+0000');
+        // ISO 8601 - summer/winter time
+        $this->assertTrue($value === '2009-02-13T23:31:30+0000' || $value === '2009-02-14T00:31:30+0100');
+
+        /* Carbon -------------------------------------------------------------------------------------- */
+        $carbon = new Carbon\Carbon();
+        $dateTime->setTimestamp(1234567890);
+
+        $og->tag('datetime', $carbon);
+
+        $tag = $og->lastTag('datetime');
+        $value = $tag['value'];
+
+        // ISO 8601 - summer/winter time
+        $this->assertTrue($value === '2009-02-13T23:31:30+0000' || $value === '2009-02-14T00:31:30+0100');
     }
 
     public function testRenderTags()
