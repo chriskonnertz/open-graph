@@ -653,7 +653,7 @@ class OpenGraph {
      */
     protected function convertDate($date)
     {
-        if (is_a($date, DateTime::class)) {
+        if (is_a($date, 'DateTime')) {
             return (string) $date->format(DateTime::ISO8601);
         }
 
