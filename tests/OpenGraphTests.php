@@ -72,7 +72,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
 
         /* Carbon -------------------------------------------------------------------------------------- */
         $carbon = new Carbon\Carbon();
-        $dateTime->setTimestamp(1234567890);
+        $carbon->setTimestamp(1234567890);
 
         $og->tag('datetime', $carbon);
 
