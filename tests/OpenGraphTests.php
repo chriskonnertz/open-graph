@@ -43,6 +43,10 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $og->tag('fruit', 'apple');
         $this->assertTrue($og->has('fruit'));
 
+        $og->tag('fruit', 'pear');
+        $tag = $og->lastTag('fruit');
+        $this->assertEquals($tag->value, 'pear');
+
         $og->forget('title');
         $this->assertFalse($og->has('title'));
 

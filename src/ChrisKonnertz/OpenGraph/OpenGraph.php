@@ -9,6 +9,11 @@ use DateTime;
 class OpenGraph {
 
     /**
+     * The name prefix
+     */
+    const NAME_PREFIX = 'og:';
+
+    /**
      * Array containing the tags
      * @var array
      */
@@ -24,7 +29,7 @@ class OpenGraph {
      * HTML code of the tag template. {{var}} will be replaced by the variable's value.
      * @var string
      */
-    protected $template = "<meta property=\"og:{{name}}\" content=\"{{value}}\" />\n";
+    protected $template = "<meta property=\"{{name}}\" content=\"{{value}}\" />\n";
 
     /**
      * Constructor call
@@ -35,6 +40,19 @@ class OpenGraph {
     {
         $this->tags     = array();
         $this->validate = $validate;
+    }
+
+    /**
+     * Creates and returns a new open graph tag object.
+     * 
+     * @param  string  $name     The name of the tag
+     * @param  mixed   $value    The value of the tag
+     * @param  boolean $prefixed Add the "og"-prefix?
+     * @return OpenGraphTag
+     */
+    protected function createTag($name, $value, $prefixed = true)
+    {
+        return new OpenGraphTag($name, $value, $prefixed);
     }
 
     /**
@@ -50,8 +68,8 @@ class OpenGraph {
     /**
      * Setter for the validation mode.
      *
-     * @param  bool  $strict
-     * @return array
+     * @param  bool  $validate
+     * @return OpenGraph
      */
     public function validate($validate = true)
     {
@@ -80,7 +98,9 @@ class OpenGraph {
     public function has($name)
     {
         foreach ($this->tags as $tag) {
-            if ($tag['name'] == $name) return true;
+            if ($tag->name == $name) {
+                return true;
+            }
         }
 
         return false;
@@ -95,7 +115,9 @@ class OpenGraph {
     public function forget($name)
     {
         foreach ($this->tags as $key => $tag) {
-            if ($tag['name'] == $name) unset($this->tags[$key]);
+            if ($tag->name == $name) {
+                unset($this->tags[$key]);
+            }
         }
 
         return $this;
@@ -104,7 +126,7 @@ class OpenGraph {
     /**
      * Remove all tags
      *
-     * @return void
+     * @return OpenGraph
      */
     public function clear()
     {
@@ -116,15 +138,16 @@ class OpenGraph {
     /**
      * Adds a custom tag to the list of tags
      * 
-     * @param string $name
-     * @param string $value
-     * @return void
+     * @param string  $name     The name of the tag
+     * @param string  $value    The value of the tag
+     * @param boolean $prefixed Add the "og"-prefix?
+     * @return OpenGraph
      */
-    public function tag($name, $value)
+    public function tag($name, $value, $prefixed = true)
     {
         $value = $this->convertDate($value);
 
-        $this->tags[] = compact('name', 'value');
+        $this->tags[] = $this->createTag($name, $value, $prefixed);
 
         return $this;
     }
@@ -134,9 +157,11 @@ class OpenGraph {
      * 
      * @param string    $tagName    The name of the base tag
      * @param array     $attributes Array with attributes (pairs of name and value)
-     * @return void
+     * @param array     $valid      Array with names of valid attributes
+     * @param boolean   $prefixed   Add the "og"-prefix?
+     * @return OpenGraph
      */
-    public function attributes($tagName, $attributes = array(), $valid = array())
+    public function attributes($tagName, $attributes = array(), $valid = array(), $prefixed = true)
     {
         foreach ($attributes as $name => $value) {
             if ($this->validate and sizeof($valid) > 0) {
@@ -147,10 +172,23 @@ class OpenGraph {
 
             $value = $this->convertDate($value);
 
-            $this->tags[] = array('name' => $tagName.':'.$name, 'value' => $value);
+            $this->tags[] = $this->createTag($tagName.':'.$name, $value, $prefixed);
         }
 
         return $this;
+    }
+
+    /**
+     * Shortcut for attributes() with $prefixed = false
+     * 
+     * @param string    $tagName    The name of the base tag
+     * @param array     $attributes Array with attributes (pairs of name and value)
+     * @param array     $valid      Array with names of valid attributes
+     * @return OpenGraph
+     */
+    public function unprefixedAttributes($tagName, $attributes = array(), $valid = array())
+    {
+        return $this->attributes($tagName, $attributes, $valid, false);
     }
 
     /**
@@ -169,7 +207,7 @@ class OpenGraph {
 
         $this->forget('title');
 
-        $this->tags[] = array('name' => 'title', 'value' => strip_tags($title));
+        $this->tags[] = $this->createTag('title', strip_tags($title));
 
         return $this;
     }
@@ -203,7 +241,7 @@ class OpenGraph {
 
         $this->forget('type');
 
-        $this->tags[] = array('name' => 'type', 'value' => $type);
+        $this->tags[] = $this->createTag('type', $type);
 
         return $this;
     }
@@ -230,7 +268,7 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid image URL '{$imageFile}'");
         }
 
-        $this->tags[] = array('name' => 'image', 'value' => $imageFile);
+        $this->tags[] = $this->createTag('image', $imageFile);
 
         if ($attributes) {
             $valid = array(
@@ -262,11 +300,13 @@ class OpenGraph {
 
         $description = substr($description, 0, $maxLength);
 
-        if (strlen($description) < $length) $description .= '...';
+        if (strlen($description) < $length) {
+            $description .= '...';
+        }
 
         $this->forget('description');
 
-        $this->tags[] = array('name' => 'description', 'value' => $description);
+        $this->tags[] = $this->createTag('description', $description);
 
         return $this;
     }
@@ -281,7 +321,12 @@ class OpenGraph {
     {
         if (! $url) {
             $url = 'http';
-            if (isset($_SERVER['HTTPS'])) $url .= 's';
+
+            // Quick and dirty
+            if (isset($_SERVER['HTTPS'])) {
+                $url .= 's';
+            }
+
             $url .= "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
         } 
 
@@ -291,7 +336,7 @@ class OpenGraph {
 
         $this->forget('url');
 
-        $this->tags[] = array('name' => 'url', 'value' => $url);
+        $this->tags[] = $this->createTag('url', $url);
 
         return $this;
     }
@@ -310,7 +355,7 @@ class OpenGraph {
 
         $this->forget('locale');
 
-        $this->tags[] = array('name' => 'locale', 'value' => $locale);
+        $this->tags[] = $this->createTag('locale', $locale);
 
         return $this;
     }
@@ -328,7 +373,7 @@ class OpenGraph {
                 throw new Exception("Open Graph: Invalid locale (item key: {$key})");
             }
 
-            $this->tags[] = array('name' => 'locale:alternate', 'value' => $locale);
+            $this->tags[] = $this->createTag('locale:alternate', $locale);
         }
 
         return $this;
@@ -348,7 +393,7 @@ class OpenGraph {
 
         $this->forget('site_name');
 
-        $this->tags[] = array('name' => 'site_name', 'value' => $siteName);
+        $this->tags[] = $this->createTag('site_name', $siteName);
 
         return $this;
     }
@@ -373,7 +418,7 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid determiner '{$determiner}' (unkown value)");
         }
 
-        $this->tags[] = array('name' => 'determiner', 'value' => $determiner);
+        $this->tags[] = $this->createTag('determiner', $determiner);
 
         return $this;
     }
@@ -400,7 +445,7 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid audio URL '{$audioFile}'");
         }
 
-        $this->tags[] = array('name' => 'audio', 'value' => $audioFile);
+        $this->tags[] = $this->createTag('audio', $audioFile);
 
         if ($attributes) {
             $valid = array(
@@ -412,7 +457,7 @@ class OpenGraph {
 
             $specialValid = array();
 
-            if ($tag and $tag == 'music.song') {
+            if ($tag and $tag->name == 'music.song') {
                 $specialValid = array(
                     'duration',
                     'album',
@@ -422,7 +467,7 @@ class OpenGraph {
                 );
             }
 
-            if ($tag and $tag == 'music.album') {
+            if ($tag and $tag->name == 'music.album') {
                 $specialValid = array(
                     'song',
                     'song:disc',
@@ -432,7 +477,7 @@ class OpenGraph {
                 );
             }
 
-            if ($tag and $tag == 'music.playlist') {
+            if ($tag and $tag->name == 'music.playlist') {
                 $specialValid = array(
                     'song',
                     'song:disc',
@@ -441,7 +486,7 @@ class OpenGraph {
                 );
             }
 
-            if ($tag and $tag == 'music.radio_station') {
+            if ($tag and $tag->name == 'music.radio_station') {
                 $specialValid = array(
                     'creator',
                 );
@@ -477,7 +522,7 @@ class OpenGraph {
             throw new Exception("Open Graph: Invalid video URL '{$videoFile}'");
         }
 
-        $this->tags[] = array('name' => 'video', 'value' => $videoFile);
+        $this->tags[] = $this->createTag('video', $videoFile);
 
         if ($attributes) {
             $valid = array(
@@ -488,7 +533,7 @@ class OpenGraph {
             );
 
             $tag = $this->lastTag('type');
-            if ($tag and starts_with($tag['value'], 'video.')) {
+            if ($tag and starts_with($tag->value, 'video.')) {
                 $specialValid = array(
                     'actor',
                     'role',
@@ -499,7 +544,7 @@ class OpenGraph {
                     'tag',
                 );
 
-                if ($tag['value'] == 'video.episode') {
+                if ($tag->value == 'video.episode') {
                     $specialValid[] = 'video:series';
                 }
 
@@ -521,7 +566,7 @@ class OpenGraph {
     public function article($attributes = array())
     {
         $tag = $this->lastTag('type');
-        if (! $tag or $tag['value'] != 'article') {
+        if (! $tag or $tag->value != 'article') {
             throw new Exception("Open Graph: Type has to be 'article' to add article attributes");
         }
 
@@ -534,7 +579,7 @@ class OpenGraph {
             'tag',
         );
 
-        $this->attributes('article', $attributes, $valid);
+        $this->unprefixedAttributes('article', $attributes, $valid);
 
         return $this;
     }
@@ -548,7 +593,7 @@ class OpenGraph {
     public function book($attributes = array())
     {
         $tag = $this->lastTag('type');
-        if (! $tag or $tag['value'] != 'book') {
+        if (! $tag or $tag->value != 'book') {
             throw new Exception("Open Graph: Type has to be 'book' to add book attributes");
         }
 
@@ -559,7 +604,7 @@ class OpenGraph {
             'tag',
         );
 
-        $this->attributes('book', $attributes);
+        $this->unprefixedAttributes('book', $attributes);
 
         return $this;
     }
@@ -567,13 +612,13 @@ class OpenGraph {
     /**
      * Adds profile attributes
      * 
-     * @param  array  $attributes   Array with attributes (pairs of name and value)
+     * @param  array  $attributes Array with attributes (pairs of name and value)
      * @return OpenGraph
      */
     public function profile($attributes = array())
     {
         $tag = $this->lastTag('type');
-        if (! $tag or $tag['value'] != 'profile') {
+        if (! $tag or $tag->value != 'profile') {
             throw new Exception("Open Graph: Type has to be 'profile' to add profile attributes");
         }
 
@@ -584,7 +629,7 @@ class OpenGraph {
             'gender',
         );
 
-        $this->attributes('profile', $attributes);
+        $this->unprefixedAttributes('profile', $attributes);
 
         return $this;
     }
@@ -612,7 +657,13 @@ class OpenGraph {
         $output = '';
         $vars   = array('{{name}}', '{{value}}');
         foreach ($this->tags as $tag) {
-            $output .= str_replace($vars, array($tag['name'], $tag['value']), $this->template);
+            $name = $tag->name;
+
+            if ($tag->prefixed) {
+                $name = self::NAME_PREFIX.$name;
+            }
+
+            $output .= str_replace($vars, array($name, $tag->value), $this->template);
         }
 
         return $output;
@@ -631,18 +682,20 @@ class OpenGraph {
     /**
      * Returns the last tag in the lists of tags with matching name
      * 
-     * @param  string       $name The name of the tag
-     * @return array|null   Returns the tag (array with name and value) or null
+     * @param  string               $name The name of the tag
+     * @return OpenGraphTag|null          Returns the tag object or null
      */
     public function lastTag($name)
     {
+        $lastTag = null;
+
         foreach ($this->tags as $tag) {
-            if ($tag['name'] == $name) {
-                return $tag;
+            if ($tag->name == $name) {
+                $lastTag = $tag;
             }
         }
 
-        return null;
+        return $lastTag;
     }
 
     /**
