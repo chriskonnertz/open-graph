@@ -65,7 +65,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $og->tag('datetime', $dateTime);
 
         $tag = $og->lastTag('datetime');
-        $value = $tag['value'];
+        $value = $tag->value;
 
         // ISO 8601 - summer/winter time
         $this->assertTrue($value === '2009-02-13T23:31:30+0000' || $value === '2009-02-14T00:31:30+0100');
@@ -77,7 +77,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $og->tag('datetime', $carbon);
 
         $tag = $og->lastTag('datetime');
-        $value = $tag['value'];
+        $value = $tag->value;
 
         // ISO 8601 - summer/winter time
         $this->assertTrue($value === '2009-02-13T23:31:30+0000' || $value === '2009-02-14T00:31:30+0100');
