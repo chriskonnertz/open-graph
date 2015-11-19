@@ -115,7 +115,7 @@ Some object types (determined by the `type` tag) have their own tags with attrib
     ]);
 
     $og->profile([
-        'first_name'    => 'Kim'
+        'first_name'    => 'Kim',
         'last_name'     => 'Doe'
     ]);
 ```
