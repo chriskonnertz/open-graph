@@ -178,6 +178,9 @@ Disable validation:
 ```php
     $og->tag('apples', 7);
 ```
+
+> To disable auto-prefixing pass a third parameter: `$og->tag('apples', 7, false)`
+
 ### Get The Last Tag (By Name)
 ```php
     $tag = $og->lastTag('image');
