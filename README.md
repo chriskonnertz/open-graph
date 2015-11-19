@@ -59,7 +59,7 @@ Example:
 ```
 Render these tags in a template as follows:
 ```
-    {!! $og->renderTags(!! }}
+    {!! $og->renderTags() !!}
 ```
 
 > In Laravel 4 you have to use ``{{ ... }}`` tags to avoid escaping.
