@@ -9,6 +9,11 @@ use DateTime;
 class OpenGraph {
 
     /**
+     * The version number
+     */
+    const VERSION = '1.0.0';
+
+    /**
      * The name prefix
      */
     const NAME_PREFIX = 'og:';
