@@ -9,7 +9,7 @@ Class that assists in building Open Graph meta tags.
 
 Add `chriskonnertz/open-graph` to `composer.json`:
 
-    "chriskonnertz/open-graph": "dev-master"
+    "chriskonnertz/open-graph": "~1"
 
 Run `composer update` to get the latest version of Open Graph Builder.
 
