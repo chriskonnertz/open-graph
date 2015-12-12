@@ -3,7 +3,7 @@
 [![Monthly Downloads](https://img.shields.io/packagist/dm/chriskonnertz/open-graph.svg)](https://packagist.org/packages/chriskonnertz/open-graph)
 [![Build Status](https://travis-ci.org/chriskonnertz/open-graph.png)](https://travis-ci.org/chriskonnertz/open-graph)
 
-Class that assists in building Open Graph meta tags.
+Library that assists in building Open Graph meta tags.
 
 ## Installation
 
