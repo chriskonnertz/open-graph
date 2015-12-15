@@ -333,7 +333,6 @@ class OpenGraph {
             }
             
             $safeRequestURI = htmlentities(strip_tags(urldecode($_SERVER['REQUEST_URI'])));
-            $safeRequestURI = preg_replace('/alert|log/is','',$safeRequestURI);
 
             $url .= "://{$_SERVER['HTTP_HOST']}{$safeRequestURI}";
         } 
