@@ -331,8 +331,11 @@ class OpenGraph {
             if (isset($_SERVER['HTTPS'])) {
                 $url .= 's';
             }
+            
+            $safeRequestURI = htmlentities(strip_tags(urldecode($_SERVER['REQUEST_URI'])));
+            $safeRequestURI = preg_replace('/alert|log/is','',$safeRequestURI);
 
-            $url .= "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+            $url .= "://{$_SERVER['HTTP_HOST']}{$safeRequestURI}";
         } 
 
         if ($this->validate and ! filter_var($url, FILTER_VALIDATE_URL)) {
