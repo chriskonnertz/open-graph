@@ -92,4 +92,18 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $hmtl = 'HTML: '.$og;
     }
 
+    public function testMbDescription()
+    {
+        $og = $this->getDummy();
+
+        mb_internal_encoding('UTF-8');
+        
+        $char = '☺'; // Unicode char U+263A (white smiley)
+        $text = $char;
+
+        $text = mb_substr($text, 0, 1);
+
+        $this->assertEquals($text === $char);
+    }
+
 }
