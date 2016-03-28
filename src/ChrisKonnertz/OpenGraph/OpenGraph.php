@@ -301,11 +301,11 @@ class OpenGraph {
         $description = trim(strip_tags($description));
         $description = preg_replace("/\r|\n/", '', $description);
 
-        $length = strlen($description);
+        $length = mb_strlen($description);
 
-        $description = substr($description, 0, $maxLength);
+        $description = mb_substr($description, 0, $maxLength);
 
-        if (strlen($description) < $length) {
+        if (mb_strlen($description) < $length) {
             $description .= '...';
         }
 
