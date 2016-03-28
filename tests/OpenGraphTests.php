@@ -103,7 +103,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
 
         $text = mb_substr($text, 0, 1);
 
-        $this->assertEquals($text === $char);
+        $this->assertEquals($text, $char);
     }
 
 }
