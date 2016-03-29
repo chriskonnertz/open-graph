@@ -99,11 +99,11 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         mb_internal_encoding('UTF-8');
         
         $char = '☺'; // Unicode char U+263A (white smiley)
-        $text = $char;
 
-        $text = mb_substr($text, 0, 1);
-
-        $this->assertEquals($text, $char);
+        $og->description($char, 1);
+        $tag = $og->lastTag('description');
+        
+        $this->assertEquals(tag->value, $char);
     }
 
 }
