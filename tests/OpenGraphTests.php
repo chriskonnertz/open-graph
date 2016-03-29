@@ -103,7 +103,7 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $og->description($char, 1);
         $tag = $og->lastTag('description');
         
-        $this->assertEquals(tag->value, $char);
+        $this->assertEquals($tag->value, $char);
     }
 
 }
