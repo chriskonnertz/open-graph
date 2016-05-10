@@ -327,14 +327,17 @@ class OpenGraph {
         if (! $url) {
             $url = 'http';
 
+            $httpHost = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost/';
+            $requestUri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
             // Quick and dirty
             if (isset($_SERVER['HTTPS'])) {
                 $url .= 's';
             }
             
-            $safeRequestURI = htmlentities(strip_tags(urldecode($_SERVER['REQUEST_URI'])));
+            $safeRequestURI = htmlentities(strip_tags(urldecode($requestUri)));
 
-            $url .= "://{$_SERVER['HTTP_HOST']}{$safeRequestURI}";
+            $url .= "://{$httpHost}{$safeRequestURI}";
         } 
 
         if ($this->validate and ! filter_var($url, FILTER_VALIDATE_URL)) {
