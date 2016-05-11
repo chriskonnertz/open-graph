@@ -79,7 +79,7 @@ Providing Open Graph tags enriches web pages. The downside is some extra time to
         ->siteName('Cookie Recipes Website')
         ->determiner('an');
 ```
-> If no argument is passed to the `url` method the current URL is applied.
+> If no argument is passed to the `url` method the current URL is applied. Note that the environment variable `APP_URL` is considered if it is set. Furthermore, when executed via CLI, and `APP_URL` is not set, the domain will be `localhost`.
 
 Note that `DateTime` objects will be converted to ISO 8601 strings.
 
