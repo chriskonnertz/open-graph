@@ -11,7 +11,7 @@ class OpenGraph {
     /**
      * The version number
      */
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.3';
 
     /**
      * The name prefix
@@ -325,16 +325,28 @@ class OpenGraph {
     public function url($url = null)
     {
         if (! $url) {
-            $url = 'http';
+            $url = null;
 
-            // Quick and dirty
-            if (isset($_SERVER['HTTPS'])) {
-                $url .= 's';
-            }
+            $httpHost = getenv('APP_URL'); // Has to start with a protocol - for example "http://"!
+
+            if ($httpHost === false) {
+                $url = 'http';
+
+                // Quick and dirty
+                if (isset($_SERVER['HTTPS'])) {
+                    $url .= 's';
+                }
+
+                $url .= '://';
+
+                $httpHost = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost/';
+            }  
+
+            $requestUri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
             
-            $safeRequestURI = htmlentities(strip_tags(urldecode($_SERVER['REQUEST_URI'])));
+            $safeRequestURI = htmlentities(strip_tags(urldecode($requestUri)));
 
-            $url .= "://{$_SERVER['HTTP_HOST']}{$safeRequestURI}";
+            $url .= "{$httpHost}{$safeRequestURI}";
         } 
 
         if ($this->validate and ! filter_var($url, FILTER_VALIDATE_URL)) {

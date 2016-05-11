@@ -106,4 +106,21 @@ class OpenGraphTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($tag->value, $char);
     }
 
+    public function testUrl()
+    {
+        $og = $this->getDummy();
+
+        $og->url();
+        $tag = $og->lastTag('url');
+        $this->assertEquals($tag->value, 'http://localhost/');
+
+        $og->clear();
+
+        $url = 'http://example.org/';
+        putenv('APP_URL='.$url);
+        $og->url($url);
+        $tag = $og->lastTag('url');
+        $this->assertEquals($tag->value, $url);
+    }
+
 }
