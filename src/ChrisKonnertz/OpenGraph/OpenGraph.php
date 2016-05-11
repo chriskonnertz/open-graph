@@ -11,7 +11,7 @@ class OpenGraph {
     /**
      * The version number
      */
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.3';
 
     /**
      * The name prefix
