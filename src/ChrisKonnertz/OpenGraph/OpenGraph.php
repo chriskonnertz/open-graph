@@ -31,7 +31,7 @@ class OpenGraph {
     protected $validate;
 
     /**
-     * HTML code of the tag template. {{var}} will be replaced by the variable's value.
+     * HTML code of the tag template. {{name}} will be replaced by the variable's name and {{value}} with its value.
      * @var string
      */
     protected $template = "<meta property=\"{{name}}\" content=\"{{value}}\" />\n";
