@@ -187,3 +187,7 @@ Disable validation:
     $value = $tag['value'];
 ```
 > Tags are stored as arrays consisting of name-value-pairs.
+
+## Status
+
+Status of this repository: **Maintained**. Create an issue and you will get a response, usually within 48 hours.
