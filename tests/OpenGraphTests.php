@@ -9,7 +9,7 @@ if (!class_exists('\PHPUnit\Framework\TestCase')) {
 /**
  * Class OpenGraphTest for tests with PHPUnit.
  */
-class OpenGraphTest extends PHPUnit_Framework_TestCase \PHPUnit\Framework\TestCase
+class OpenGraphTest extends \PHPUnit\Framework\TestCase
 {
     
     /**
