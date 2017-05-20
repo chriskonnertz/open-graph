@@ -1,13 +1,29 @@
 <?php
 
+// Ensure backward compatibility
+// @see http://stackoverflow.com/questions/42811164/class-phpunit-framework-testcase-not-found#answer-42828632
+if (!class_exists('\PHPUnit\Framework\TestCase')) {
+    class_alias('\PHPUnit_Framework_TestCase', '\PHPUnit\Framework\TestCase');
+}
+
 class OpenGraphTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Creates and returns a new isntance
+     * 
+     * @return ChrisKonnertz\OpenGraph\OpenGraph(
+     */
     protected function getInstance()
     {
         return new ChrisKonnertz\OpenGraph\OpenGraph();
     }
 
+    /**
+     * Creates and returns a new instance with dummy values
+     * 
+     * @return ChrisKonnertz\OpenGraph\OpenGraph(
+     */
     protected function getDummy()
     {
         $og = $this->getInstance();
