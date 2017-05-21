@@ -6,8 +6,6 @@
 
 Library that assists in building Open Graph meta tags.
 
-> This library supports PHP 5.3 - 7.1 although there is no test for 5.3 at the moment.
-
 ## Installation
 
 Add `chriskonnertz/open-graph` to `composer.json`:
@@ -15,6 +13,8 @@ Add `chriskonnertz/open-graph` to `composer.json`:
     "chriskonnertz/open-graph": "~1"
 
 Run `composer update` to get the latest version of Open Graph Builder.
+
+> This library supports PHP 5.3 - 7.1
 
 ### Framework Support
 
