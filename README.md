@@ -8,9 +8,15 @@ Library that assists in building Open Graph meta tags.
 
 ## Installation
 
-Add `chriskonnertz/open-graph` to `composer.json`:
+Add `chriskonnertz/open-graph` to `composer.json` with a text editor:
 
     "chriskonnertz/open-graph": "~1"
+    
+Or via a console:
+
+```php
+composer require chriskonnertz/bbcode
+```
 
 Run `composer update` to get the latest version of Open Graph Builder.
 
