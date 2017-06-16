@@ -14,7 +14,7 @@ Add `chriskonnertz/open-graph` to `composer.json` with a text editor:
     
 Or via a console:
 
-```php
+```
 composer require chriskonnertz/open-graph
 ```
 
