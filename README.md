@@ -15,7 +15,7 @@ Add `chriskonnertz/open-graph` to `composer.json` with a text editor:
 Or via a console:
 
 ```php
-composer require chriskonnertz/bbcode
+composer require chriskonnertz/open-graph
 ```
 
 Run `composer update` to get the latest version of Open Graph Builder.
