@@ -8,12 +8,13 @@ use DateTime;
 /**
  * Open Graph protocol official docs: http://ogp.me/
  */
-class OpenGraph {
+class OpenGraph 
+{
 
     /**
      * The version number
      */
-    const VERSION = '1.0.3';
+    const VERSION = '1.0.5';
 
     /**
      * The name prefix
