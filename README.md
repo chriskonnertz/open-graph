@@ -24,7 +24,9 @@ Run `composer update` to get the latest version of Open Graph Builder.
 
 ### Framework Support
 
-In Laravel 5 you may add an alias to `config/app.php`:
+> Laravel 5.5 can auto-detect this package so you can ignore this section. 
+
+In Laravel 5.0-5.4 you may add an alias to `config/app.php`:
 ```php
     'aliases' => array(
         // ...
