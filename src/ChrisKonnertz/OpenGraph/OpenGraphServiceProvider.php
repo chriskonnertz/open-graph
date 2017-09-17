@@ -1,9 +1,12 @@
-<?php namespace ChrisKonnertz\OpenGraph;
+<?php 
+
+namespace ChrisKonnertz\OpenGraph;
 
 use ChrisKonnertz\OpenGraph\OpenGraph;
 use Illuminate\Support\ServiceProvider;
 
-class OpenGraphServiceProvider extends ServiceProvider {
+class OpenGraphServiceProvider extends ServiceProvider 
+{
 
     public function register()
     {
