@@ -19,5 +19,15 @@
             "ChrisKonnertz\\OpenGraph": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ChrisKonnertz\\OpenGraph\\OpenGraphServiceProvider"
+            ],
+            "aliases": {
+                "OpenGraph": "ChrisKonnertz\\OpenGraph\\OpenGraphFacade"
+            }
+        }
+    },
     "minimum-stability": "dev"
 }
