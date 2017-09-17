@@ -1,4 +1,6 @@
-<?php namespace ChrisKonnertz\OpenGraph;
+<?php 
+
+namespace ChrisKonnertz\OpenGraph;
 
 use Exception;
 
@@ -18,7 +20,7 @@ class OpenGraphTag {
 
     /**
      * Add the "og"-prefix?
-     * @var boolean
+     * @var bool
      */
     protected $prefixed;
 
@@ -27,7 +29,7 @@ class OpenGraphTag {
      * 
      * @param string  $name     The name of the tag
      * @param mixed   $value    The value of the tag
-     * @param boolean $prefixed Add the "og"-prefix?
+     * @param bool    $prefixed Add the "og"-prefix?
      */
     public function __construct($name, $value, $prefixed = true) 
     {
