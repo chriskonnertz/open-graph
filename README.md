@@ -34,8 +34,6 @@ In Laravel 5.0-5.4 you have to edit your `config/app.php` config file.
     ),
 ```
 
-> In Laravel 4 the path to this file is `app/config/app.php`.
-
 There is also a service provider and a facade. Add the service provider to the config file:
 
 ```php
