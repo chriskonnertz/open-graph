@@ -25,7 +25,7 @@ Run `composer update` to get the latest version of Open Graph Builder.
 ### Framework Support
 
 Laravel 5.5 can auto-detect this package so you can ignore this section. 
-In Laravel 5.0-5.4 you have to edit your `config/app.php` config file.
+In Laravel 5.0-5.4 you have to edit your `config/app.php` config file:
 
 ```php
     'aliases' => array(
