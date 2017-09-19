@@ -30,7 +30,7 @@ You can either add an alias to the object so you can create a new instance via `
 
 ```php
     'aliases' => array(
-        // ...
+        ...
         'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraph',
     ),
 ```
@@ -41,14 +41,14 @@ If you choose this path you also have to add the service provider to the config 
 
 ```php
     'aliases' => array(
-        // ...
+        ...
         'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
     ),
     
     ...
     
     'providers' => array(
-        // ...
+        ...
         'ChrisKonnertz\OpenGraph\OpenGraphServiceProvider',
     ),
 ```
