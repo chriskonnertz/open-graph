@@ -8,18 +8,21 @@ class OpenGraphTag {
 
     /**
      * The name of the tag
+     *
      * @var string
      */
     protected $name;
 
     /**
      * The value of the tag
+     *
      * @var mixed
      */
     protected $value;
 
     /**
      * Add the "og"-prefix?
+     *
      * @var bool
      */
     protected $prefixed;
@@ -38,11 +41,17 @@ class OpenGraphTag {
         $this->setAttribute('prefixed', $prefixed);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function __get($name)
     {
         return $this->$name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function __set($name, $value)
     {
         $this->setAttribute($name, $value);
@@ -59,6 +68,7 @@ class OpenGraphTag {
         // Convert values
         switch ($name) {
             case 'name':
+                // no break here
             case 'value':
                 $value = (string) $value;
                 break;
