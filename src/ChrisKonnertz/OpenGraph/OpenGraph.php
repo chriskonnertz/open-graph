@@ -23,18 +23,21 @@ class OpenGraph
 
     /**
      * Array containing the tags
+     *
      * @var OpenGraphTag[]
      */
     protected $tags;
 
     /**
      * Enables validation. A violation of the standard will throw an exception.
+     *
      * @var bool
      */
     protected $validate;
 
     /**
      * HTML code of the tag template. {{name}} will be replaced by the variable's name and {{value}} with its value.
+     *
      * @var string
      */
     protected $template = "<meta property=\"{{name}}\" content=\"{{value}}\" />\n";
