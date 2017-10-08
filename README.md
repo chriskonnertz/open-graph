@@ -98,19 +98,19 @@ Note that `DateTime` objects will be converted to ISO 8601 strings.
 You may add `image`, `audio` or `video` tags and pass the basic value (the URL to the object) and an array of additional attributes.
 ```php
     $og->image($imageUrl, [
-            'width'     => 300,
-            'height'    => 200
-        ]);
+        'width'     => 300,
+        'height'    => 200
+    ]);
 
     $og->audio($audioUrl, [
-            'type'     => 'audio/mpeg'
-        ]);
+        'type'     => 'audio/mpeg'
+    ]);
 
     $og->video($videoUrl, [
-            'width'     => 300,
-            'height'    => 200,
-            'type'      => 'application/x-shockwave-flash'
-        ]);
+        'width'     => 300,
+        'height'    => 200,
+        'type'      => 'application/x-shockwave-flash'
+    ]);
 ```
 ### Add Type Attributes
 
