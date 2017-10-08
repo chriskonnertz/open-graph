@@ -1,7 +1,8 @@
 # Open Graph Builder
 
-[![Monthly Downloads](https://img.shields.io/packagist/dm/chriskonnertz/open-graph.svg)](https://packagist.org/packages/chriskonnertz/open-graph)
 [![Build Status](https://travis-ci.org/chriskonnertz/open-graph.png)](https://travis-ci.org/chriskonnertz/open-graph)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/chriskonnertz/open-graph.svg)](https://packagist.org/packages/chriskonnertz/open-graph)
+[![Version](https://img.shields.io/packagist/v/chriskonnertz/open-graph.svg)](https://packagist.org/packages/chriskonnertz/open-graph)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/chriskonnertz/open-graph/master/LICENSE)
 
 Library that assists in building Open Graph meta tags.
