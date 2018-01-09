@@ -14,7 +14,7 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
 {
     
     /**
-     * Creates and returns a new isntance
+     * Creates and returns a new instance
      * 
      * @return ChrisKonnertz\OpenGraph\OpenGraph(
      */
