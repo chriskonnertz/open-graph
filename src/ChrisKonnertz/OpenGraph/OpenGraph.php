@@ -17,7 +17,7 @@ class OpenGraph
     const VERSION = '1.0.5';
 
     /**
-     * The name prefix
+     * Define a prefix for tag names
      */
     const NAME_PREFIX = 'og:';
 
