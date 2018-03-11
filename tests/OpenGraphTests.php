@@ -109,7 +109,7 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
 
         $html = $og->renderTags();
 
-        $this->assertEquals(344, mb_strlen($html));
+        $this->assertEquals(369, mb_strlen($html));
     }
 
     public function testMbDescription()
