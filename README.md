@@ -23,7 +23,7 @@ composer require chriskonnertz/open-graph
 
 Run `composer update` to get the latest version of Open Graph Builder.
 
-> This library supports PHP 5.3 - 7.1
+> This library supports PHP 5.3 - 7.2
 
 ### Framework Support
 
