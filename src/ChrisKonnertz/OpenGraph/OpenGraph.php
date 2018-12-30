@@ -14,7 +14,7 @@ class OpenGraph
     /**
      * The version number
      */
-    const VERSION = '1.0.5';
+    const VERSION = '1.0.6';
 
     /**
      * Define a prefix for tag names
