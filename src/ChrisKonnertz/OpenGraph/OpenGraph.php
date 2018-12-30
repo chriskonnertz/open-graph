@@ -393,8 +393,9 @@ class OpenGraph
      */
     public function localeAlternate($locales = array())
     {
-        if(is_string($locales))
+        if (is_string($locales)) {
             $locales = (array) $locales;
+        }
         
         foreach ($locales as $key => $locale) {
             if ($this->validate and ! $locale) {
