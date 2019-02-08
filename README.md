@@ -63,9 +63,8 @@ If you choose this path you also have to add the service provider to the config 
 Example:
 
 ```php
-$og = new OpenGraph();
 
-$og->title('Apple Cookie')
+$og = OpenGraph()::title('Apple Cookie')
     ->type('article')
     ->image('http://example.org/apple.jpg')
     ->description('Welcome to the best apple cookie recipe never created.')
