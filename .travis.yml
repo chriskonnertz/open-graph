@@ -5,8 +5,8 @@ dist: precise
 php: 
   - 5.3
   - 5.6
-  - 7.1
   - 7.2
+  - 7.3
   
 before_script:
   - curl -s http://getcomposer.org/installer | php
