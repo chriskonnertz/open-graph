@@ -64,7 +64,7 @@ Example:
 
 ```php
 
-$og = OpenGraph()::title('Apple Cookie')
+$og = OpenGraph::title('Apple Cookie')
     ->type('article')
     ->image('http://example.org/apple.jpg')
     ->description('Welcome to the best apple cookie recipe never created.')
