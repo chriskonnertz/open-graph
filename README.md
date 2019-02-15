@@ -21,7 +21,7 @@ Or via a console:
 composer require chriskonnertz/open-graph
 ```
 
-In the future eun `composer update` to update to the latest version of Open Graph Builder.
+In the future use `composer update` to update to the latest version of Open Graph Builder.
 
 > This library supports PHP >=5.3.
 
