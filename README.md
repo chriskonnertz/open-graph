@@ -23,7 +23,7 @@ composer require chriskonnertz/open-graph
 
 In the future eun `composer update` to update to the latest version of Open Graph Builder.
 
-> This library supports PHP 5.3 - 7.2
+> This library supports PHP >=5.3.
 
 ### Framework Support
 
@@ -98,7 +98,7 @@ $og->title('Apple Cookie')
 
 > If no argument is passed to the `url` method the current URL is applied. Note that the environment variable `APP_URL` is considered if it is set. Furthermore, when executed via CLI, and `APP_URL` is not set, the domain will be `localhost`.
 
-Note that `DateTime` objects will be converted to ISO 8601 strings.
+Note that `DateTime` objects will be converted to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) strings.
 
 ### Add Tags With Attributes
 
