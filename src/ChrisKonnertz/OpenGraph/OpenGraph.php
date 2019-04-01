@@ -271,7 +271,7 @@ class OpenGraph
             throw new Exception("Open Graph: Invalid image URL (empty)");
         }
 
-        if (strpos($imageFile, '://') === false) {
+        if (strpos($imageFile, '://') === false and function_exists('asset')) {
             $imageFile = asset($imageFile);
         }
 
@@ -466,7 +466,7 @@ class OpenGraph
             throw new Exception("Open Graph: Invalid audio URL (empty)");
         }
 
-        if (strpos($audioFile, '://') === false) {
+        if (strpos($audioFile, '://') === false and function_exists('asset')) {
             $audioFile = asset($audioFile);
         }
 
@@ -543,7 +543,7 @@ class OpenGraph
             throw new Exception("Open Graph: Invalid video URL (empty)");
         }
 
-        if (strpos($videoFile, '://') === false) {
+        if (strpos($videoFile, '://') === false and function_exists('asset')) {
             $videoFile = asset($videoFile);
         }
 
