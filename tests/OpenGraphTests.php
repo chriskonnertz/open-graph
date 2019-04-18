@@ -9,7 +9,7 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates and returns a new instance
      * 
-     * @return ChrisKonnertz\OpenGraph\OpenGraph(
+     * @return ChrisKonnertz\OpenGraph\OpenGraph
      */
     protected function getInstance()
     {
@@ -19,7 +19,7 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates and returns a new instance with dummy values
      * 
-     * @return ChrisKonnertz\OpenGraph\OpenGraph(
+     * @return ChrisKonnertz\OpenGraph\OpenGraph
      */
     protected function getDummy()
     {
