@@ -604,7 +604,7 @@ class OpenGraph
             throw new Exception("Open Graph: Type has to be 'article' to add article attributes");
         }
 
-        $valid = ]
+        $valid = [
             'published_time',
             'modified_time',
             'expiration_time',
