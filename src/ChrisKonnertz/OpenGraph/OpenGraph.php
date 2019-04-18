@@ -738,7 +738,7 @@ class OpenGraph
      * @param  string|DateTime $date The date (string or DateTime)
      * @return string
      */
-    protected function convertDate(string $date) : string
+    protected function convertDate($date) : string
     {
         if (is_a($date, 'DateTime')) {
             return (string) $date->format(DateTime::ISO8601);
