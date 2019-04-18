@@ -4,6 +4,9 @@ namespace ChrisKonnertz\OpenGraph;
 
 use Exception;
 
+/**
+ * Class that represents n open graph tag
+ */
 class OpenGraphTag {
 
     /**
@@ -30,11 +33,11 @@ class OpenGraphTag {
     /**
      * Constructor call.
      * 
-     * @param string  $name     The name of the tag
-     * @param mixed   $value    The value of the tag
-     * @param bool    $prefixed Add the "og"-prefix?
+     * @param string $name     The name of the tag
+     * @param mixed  $value    The value of the tag
+     * @param bool   $prefixed Add the "og"-prefix?
      */
-    public function __construct($name, $value, $prefixed = true) 
+    public function __construct(string $name, $value, bool $prefixed = true) 
     {
         $this->setAttribute('name', $name);
         $this->setAttribute('value', $value);
@@ -58,12 +61,12 @@ class OpenGraphTag {
     }
 
     /**
-     * Sets an objet attribute to a value.
+     * Sets an object attribute to a value.
      * 
      * @param string $name  The name of the object attribute
      * @param mixed  $value The value of the object attribute
      */
-    protected function setAttribute($name, $value) 
+    protected function setAttribute(string $name, $value) : void
     {
         // Convert values
         switch ($name) {
