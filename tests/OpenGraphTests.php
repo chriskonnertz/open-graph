@@ -1,12 +1,5 @@
 <?php
 
-// Ensure backward compatibility
-// @see http://stackoverflow.com/questions/42811164/class-phpunit-framework-testcase-not-found#answer-42828632
-if (!class_exists('\PHPUnit\Framework\TestCase') &&
-    class_exists('\PHPUnit_Framework_TestCase')) {
-    class_alias('\PHPUnit_Framework_TestCase', 'PHPUnit\Framework\TestCase');
-}
-
 /**
  * Class OpenGraphTest for tests with PHPUnit.
  */
