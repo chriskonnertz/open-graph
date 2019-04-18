@@ -12,7 +12,7 @@ Library that assists in building Open Graph meta tags.
 Add `chriskonnertz/open-graph` to `composer.json` with a text editor:
 
 ```
-"chriskonnertz/open-graph": "~1"
+"chriskonnertz/open-graph": "~2"
 ```
     
 Or via a console:
@@ -23,7 +23,7 @@ composer require chriskonnertz/open-graph
 
 In the future use `composer update` to update to the latest version of Open Graph Builder.
 
-> This library supports PHP >=5.3.
+> This library requires PHP >=7.0.
 
 ### Framework Support
 
@@ -75,8 +75,6 @@ Render these tags in a template as follows:
 ```
 {!! $og->renderTags() !!}
 ```
-
-> In Laravel 4 you have to use ``{{ ... }}`` tags to avoid escaping.
 
 Providing Open Graph tags enriches web pages. The downside is some extra time to spend, because every model has its own way to generate these tags. It's also important to follow the [official protocol](http://ogp.me/). Read the documentation to learn more about the tags that are available and the values they support or [check out examples](https://github.com/niallkennedy/open-graph-protocol-examples). Please note that this implementation sticks to the specification of OGP.me and does not support the enhancements created by Facebook.
 
