@@ -9,5 +9,7 @@ php:
 before_script:
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev
+  - php composer.phar require "phpunit/phpunit:~6"
 
-script: phpunit
+script: 
+  - ./vendor/bin/phpunit
