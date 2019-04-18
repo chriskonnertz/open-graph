@@ -32,10 +32,10 @@ In Laravel 5.0-5.4 you have to edit your `config/app.php` config file.
 You can either add an alias to the object so you can create a new instance via `new OpenGraph()` ...
 
 ```php
-'aliases' => array(
+'aliases' => [
     ...
     'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraph',
-),
+],
 ```
 
 ...or an alias to the facade (this is what happens in Laravel >=5.5 via package auto-discovery) so you
@@ -43,17 +43,17 @@ do not have to create the instance by yourself but you can access it via pseudo-
 If you choose this path you also have to add the service provider to the config file:
 
 ```php
-'aliases' => array(
+'aliases' => [
     ...
     'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
-),
+],
 
 ...
 
-'providers' => array(
+'providers' => [
     ...
     'ChrisKonnertz\OpenGraph\OpenGraphServiceProvider',
-),
+],
 ```
 
 > If you need to reset the underlying instance of the facade (the `OpenGraph` object), call `OpenGraph::clear()`.
