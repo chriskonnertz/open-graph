@@ -1,7 +1,7 @@
 {
     "name": "chriskonnertz/open-graph",
     "description": "Class that assists in building Open Graph meta tags",
-    "keywords": ["opengraph", "open graph", "ogp", "laravel", "laravel4", "laravel5"],
+    "keywords": ["opengraph", "open graph", "ogp", "laravel", "laravel5"],
     "license": "MIT",
     "authors": [
         {
@@ -9,10 +9,10 @@
         }
     ],
     "require": {
-        "php": ">=5.3.7"
+        "php": ">=7.0"
     },
     "require-dev": {
-        "nesbot/carbon": "~1.14"
+        "nesbot/carbon": "~1"
     },
     "autoload": {
         "psr-0": {
