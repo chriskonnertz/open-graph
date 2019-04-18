@@ -6,6 +6,7 @@ use Exception;
 use DateTime;
 
 /**
+ * Library that assists in building Open Graph meta tags.
  * Open Graph protocol official docs: http://ogp.me/
  */
 class OpenGraph 
@@ -14,7 +15,7 @@ class OpenGraph
     /**
      * The version number
      */
-    const VERSION = '1.0.7';
+    const VERSION = '1.1.0';
 
     /**
      * Define a prefix for tag names
@@ -47,21 +48,21 @@ class OpenGraph
      * 
      * @param bool $validate Enable validation?
      */
-    public function __construct($validate = false)
+    public function __construct(bool $validate = false)
     {
-        $this->tags     = array();
+        $this->tags     = [];
         $this->validate = $validate;
     }
 
     /**
      * Creates and returns a new open graph tag object.
      * 
-     * @param  string  $name     The name of the tag
-     * @param  mixed   $value    The value of the tag
-     * @param  bool    $prefixed Add the "og"-prefix?
+     * @param  string $name     The name of the tag
+     * @param  mixed  $value    The value of the tag
+     * @param  bool   $prefixed Add the "og"-prefix?
      * @return OpenGraphTag
      */
-    protected function createTag($name, $value, $prefixed = true)
+    protected function createTag(string $name, $value, bool $prefixed = true) : OpenGraphTag
     {
         return new OpenGraphTag($name, $value, $prefixed);
     }
@@ -71,7 +72,7 @@ class OpenGraph
      * 
      * @return bool
      */
-    public function valid()
+    public function valid() : bool
     {
         return $this->validate;
     }
@@ -79,10 +80,10 @@ class OpenGraph
     /**
      * Setter for the validation mode.
      *
-     * @param  bool  $validate
+     * @param  bool $validate
      * @return OpenGraph
      */
-    public function validate($validate = true)
+    public function validate(bool $validate = true) : self
     {
         $this->validate = $validate;
 
@@ -94,7 +95,7 @@ class OpenGraph
      * 
      * @return OpenGraphTag[]
      */
-    public function tags()
+    public function tags() : array
     {
         return $this->tags;
     }
@@ -103,10 +104,10 @@ class OpenGraph
      * True if at least one tag with the given name exists.
      * It's possible that a tag has multiple values.
      * 
-     * @param  string  $name
+     * @param  string $name
      * @return bool
      */
-    public function has($name)
+    public function has(string $name) : bool
     {
         foreach ($this->tags as $tag) {
             if ($tag->name == $name) {
@@ -123,7 +124,7 @@ class OpenGraph
      * @param  string  $name
      * @return OpenGraph
      */
-    public function forget($name)
+    public function forget(string $name) : self
     {
         foreach ($this->tags as $key => $tag) {
             if ($tag->name == $name) {
@@ -139,9 +140,9 @@ class OpenGraph
      *
      * @return OpenGraph
      */
-    public function clear()
+    public function clear() : self
     {
-        $this->tags = array();
+        $this->tags = [];
 
         return $this;
     }
@@ -149,12 +150,12 @@ class OpenGraph
     /**
      * Adds a custom tag to the list of tags
      * 
-     * @param string  $name     The name of the tag
-     * @param string  $value    The value of the tag
-     * @param bool    $prefixed Add the "og"-prefix?
+     * @param string $name     The name of the tag
+     * @param mixed  $value    The value of the tag
+     * @param bool   $prefixed Add the "og"-prefix?
      * @return OpenGraph
      */
-    public function tag($name, $value, $prefixed = true)
+    public function tag(string $name, $value, bool $prefixed = true) : self
     {
         $value = $this->convertDate($value);
 
@@ -166,13 +167,17 @@ class OpenGraph
     /**
      * Adds attribute tags to the list of tags
      * 
-     * @param string    $tagName    The name of the base tag
-     * @param array     $attributes Array with attributes (pairs of name and value)
-     * @param string[]  $valid      Array with names of valid attributes
-     * @param bool      $prefixed   Add the "og"-prefix?
+     * @param string   $tagName    The name of the base tag
+     * @param array    $attributes Array with attributes (pairs of name and value)
+     * @param string[] $valid      Array with names of valid attributes
+     * @param bool     $prefixed   Add the "og"-prefix?
      * @return OpenGraph
      */
-    public function attributes($tagName, $attributes = array(), $valid = array(), $prefixed = true)
+    public function attributesstring (
+        string $tagName, 
+        array $attributes = [], 
+        array $valid = [], 
+        bool $prefixed = true) : self
     {
         foreach ($attributes as $name => $value) {
             if ($this->validate and sizeof($valid) > 0) {
@@ -192,12 +197,12 @@ class OpenGraph
     /**
      * Shortcut for attributes() with $prefixed = false
      * 
-     * @param string    $tagName    The name of the base tag
-     * @param array     $attributes Array with attributes (pairs of name and value)
-     * @param string[]  $valid      Array with names of valid attributes
+     * @param string   $tagName    The name of the base tag
+     * @param array    $attributes Array with attributes (pairs of name and value)
+     * @param string[] $valid      Array with names of valid attributes
      * @return OpenGraph
      */
-    public function unprefixedAttributes($tagName, $attributes = array(), $valid = array())
+    public function unprefixedAttributes(string $tagName, array $attributes = [], array $valid = []) : self
     {
         return $this->attributes($tagName, $attributes, $valid, false);
     }
@@ -208,7 +213,7 @@ class OpenGraph
      * @param  string $title
      * @return OpenGraph
      */
-    public function title($title)
+    public function title(string $title) : self
     {
         $title = trim($title);
 
@@ -229,9 +234,9 @@ class OpenGraph
      * @param  string $type
      * @return OpenGraph
      */
-    public function type($type)
+    public function type(string $type) : self
     {
-        $types = array(
+        $types = [
             'music.song',
             'music.album',
             'music.playlist',
@@ -244,7 +249,7 @@ class OpenGraph
             'book',
             'profile',
             'website',
-        );
+        ];
 
         if ($this->validate and ! in_array($type, $types)) {
             throw new Exception("Open Graph: Invalid type '{$type}' (unknown type)");
@@ -261,11 +266,11 @@ class OpenGraph
      * Adds an image tag.
      * If the URL is relative it's converted to an absolute one.
      * 
-     * @param  string $imageFile    The URL of the image file
-     * @param  array  $attributes   Array with additional attributes (pairs of name and value)
+     * @param  string     $imageFile  The URL of the image file
+     * @param  array|null $attributes Array with additional attributes (pairs of name and value)
      * @return OpenGraph
      */
-    public function image($imageFile, $attributes = null)
+    public function image(string $imageFile, array $attributes = null) : self
     {
         if ($this->validate and ! $imageFile) {
             throw new Exception("Open Graph: Invalid image URL (empty)");
@@ -282,12 +287,12 @@ class OpenGraph
         $this->tags[] = $this->createTag('image', $imageFile);
 
         if ($attributes) {
-            $valid = array(
+            $valid = [
                 'secure_url',
                 'type',
                 'width',
                 'height',
-            );
+            ];
 
             $this->attributes('image', $attributes, $valid);
         }
@@ -298,11 +303,11 @@ class OpenGraph
     /**
      * Adds a description tag
      * 
-     * @param  string   $description The description text
-     * @param  int      $description If the text is longer than this it is shortened
+     * @param  string $description The description text
+     * @param  int    $description If the text is longer than this it is shortened
      * @return OpenGraph
      */
-    public function description($description, $maxLength = 250)
+    public function description(string $description, int $maxLength = 250) : self
     {
         $description = trim(strip_tags($description));
         $description = preg_replace("/\r|\n/", '', $description);
@@ -328,7 +333,7 @@ class OpenGraph
      * @param  string $url
      * @return OpenGraph
      */
-    public function url($url = null)
+    public function url(string $url = null) : self
     {
         if (! $url) {
             $url = null;
@@ -372,7 +377,7 @@ class OpenGraph
      * @param  string $locale
      * @return OpenGraph
      */
-    public function locale($locale)
+    public function locale(string $locale) : self
     {
         if ($this->validate and ! $locale) {
             throw new Exception("Open Graph: Invalid locale (none set)");
@@ -391,7 +396,7 @@ class OpenGraph
      * @param  string[] $locales An array of alternative locales
      * @return OpenGraph
      */
-    public function localeAlternate($locales = array())
+    public function localeAlternate(array $locales = []) : self
     {
         if (is_string($locales)) {
             $locales = (array) $locales;
@@ -414,7 +419,7 @@ class OpenGraph
      * @param  string $siteName
      * @return OpenGraph
      */
-    public function siteName($siteName)
+    public function siteName(string $siteName) : self
     {
         if ($this->validate and ! $siteName) {
             throw new Exception("Open Graph: Invalid site_name (empty)");
@@ -430,18 +435,18 @@ class OpenGraph
     /**
      * Adds a determiner tag.
      * 
-     * @param  string $locale
+     * @param  string $determiner
      * @return OpenGraph
      */
-    public function determiner($determiner = '')
+    public function determiner(string $determiner = '') : self
     {
-        $enum = array(
+        $enum = [
             'a', 
             'an', 
             'the',
             'auto',
             ''
-        );
+        ];
 
         if ($this->validate and ! in_array($determiner, $enum)) {
             throw new Exception("Open Graph: Invalid determiner '{$determiner}' (unkown value)");
@@ -453,14 +458,14 @@ class OpenGraph
     }
 
     /**
-     * Adds an audio tag
+     * Adds an audio tag.
      * If the URL is relative its converted to an absolute one.
      * 
-     * @param  string $audioFile  The URL of the video file
-     * @param  array  $attributes Array with additional attributes (pairs of name and value)
+     * @param  string     $audioFile  The URL of the video file
+     * @param  array|null $attributes Array with additional attributes (pairs of name and value)
      * @return OpenGraph
      */
-    public function audio($audioFile, $attributes = null)
+    public function audio(string $audioFile, array $attributes = null) : self
     {
         if ($this->validate and ! $audioFile) {
             throw new Exception("Open Graph: Invalid audio URL (empty)");
@@ -477,48 +482,48 @@ class OpenGraph
         $this->tags[] = $this->createTag('audio', $audioFile);
 
         if ($attributes) {
-            $valid = array(
+            $valid = [
                 'secure_url',
                 'type',
-            );
+            ];
 
             $tag = $this->lastTag('type');
 
-            $specialValid = array();
+            $specialValid = [];
 
             if ($tag and $tag->name == 'music.song') {
-                $specialValid = array(
+                $specialValid = [
                     'duration',
                     'album',
                     'album:disc',
                     'album:track',
                     'musician',
-                );
+                ];
             }
 
             if ($tag and $tag->name == 'music.album') {
-                $specialValid = array(
+                $specialValid = [
                     'song',
                     'song:disc',
                     'song:track',
                     'musician',
                     'release_date',
-                );
+                ];
             }
 
             if ($tag and $tag->name == 'music.playlist') {
-                $specialValid = array(
+                $specialValid = [
                     'song',
                     'song:disc',
                     'song:track',
                     'creator',
-                );
+                ];
             }
 
             if ($tag and $tag->name == 'music.radio_station') {
-                $specialValid = array(
+                $specialValid = [
                     'creator',
-                );
+                ];
             }
 
             $valid = array_merge($valid, $specialValid);
@@ -533,11 +538,11 @@ class OpenGraph
      * Adds a video tag
      * If the URL is relative its converted to an absolute one.
      * 
-     * @param  string $videoFile  The URL of the video file
-     * @param  array  $attributes Array with additional attributes (pairs of name and value)
+     * @param  string     $videoFile  The URL of the video file
+     * @param  array|null $attributes Array with additional attributes (pairs of name and value)
      * @return OpenGraph
      */
-    public function video($videoFile, $attributes = null)
+    public function video(string $videoFile, array $attributes = null) : self
     {
         if ($this->validate and ! $videoFile) {
             throw new Exception("Open Graph: Invalid video URL (empty)");
@@ -554,16 +559,16 @@ class OpenGraph
         $this->tags[] = $this->createTag('video', $videoFile);
 
         if ($attributes) {
-            $valid = array(
+            $valid = [
                 'secure_url',
                 'type',
                 'width',
                 'height',
-            );
+            ];
 
             $tag = $this->lastTag('type');
             if ($tag and starts_with($tag->value, 'video.')) {
-                $specialValid = array(
+                $specialValid = [
                     'actor',
                     'role',
                     'director',
@@ -571,7 +576,7 @@ class OpenGraph
                     'duration',
                     'release_date',
                     'tag',
-                );
+                ];
 
                 if ($tag->value == 'video.episode') {
                     $specialValid[] = 'video:series';
@@ -589,24 +594,24 @@ class OpenGraph
     /**
      * Adds article attributes
      * 
-     * @param  array  $attributes   Array with attributes (pairs of name and value)
+     * @param  array  $attributes Array with attributes (pairs of name and value)
      * @return OpenGraph
      */
-    public function article($attributes = array())
+    public function article(array $attributes = []) : self
     {
         $tag = $this->lastTag('type');
         if (! $tag or $tag->value != 'article') {
             throw new Exception("Open Graph: Type has to be 'article' to add article attributes");
         }
 
-        $valid = array(
+        $valid = ]
             'published_time',
             'modified_time',
             'expiration_time',
             'author',
             'section',
             'tag',
-        );
+        ];
 
         $this->unprefixedAttributes('article', $attributes, $valid);
 
@@ -616,22 +621,22 @@ class OpenGraph
     /**
      * Adds book attributes
      * 
-     * @param  array  $attributes   Array with attributes (pairs of name and value)
+     * @param  array  $attributes Array with attributes (pairs of name and value)
      * @return OpenGraph
      */
-    public function book($attributes = array())
+    public function book(array $attributes = []) : self
     {
         $tag = $this->lastTag('type');
         if (! $tag or $tag->value != 'book') {
             throw new Exception("Open Graph: Type has to be 'book' to add book attributes");
         }
 
-        $valid = array(
+        $valid = [
             'author',
             'isbn',
             'release_date',
             'tag',
-        );
+        ];
 
         $this->unprefixedAttributes('book', $attributes);
 
@@ -644,19 +649,19 @@ class OpenGraph
      * @param  array  $attributes Array with attributes (pairs of name and value)
      * @return OpenGraph
      */
-    public function profile($attributes = array())
+    public function profile(array $attributes = []) : self
     {
         $tag = $this->lastTag('type');
         if (! $tag or $tag->value != 'profile') {
             throw new Exception("Open Graph: Type has to be 'profile' to add profile attributes");
         }
 
-        $valid = array(
+        $valid = [
             'first_name',
             'last_name',
             'username',
             'gender',
-        );
+        ];
 
         $this->unprefixedAttributes('profile', $attributes);
 
@@ -669,7 +674,7 @@ class OpenGraph
      * @param  string $template The template string
      * @return OpenGraph
      */
-    public function template($template)
+    public function template(string $template) : self
     {
         $this->template = $template;
 
@@ -681,10 +686,10 @@ class OpenGraph
      * 
      * @return string
      */
-    public function renderTags()
+    public function renderTags() : string
     {
         $output = '';
-        $vars   = array('{{name}}', '{{value}}');
+        $vars   = ['{{name}}', '{{value}}'];
         foreach ($this->tags as $tag) {
             $name = $tag->name;
 
@@ -692,7 +697,7 @@ class OpenGraph
                 $name = self::NAME_PREFIX.$name;
             }
 
-            $output .= str_replace($vars, array($name, $tag->value), $this->template);
+            $output .= str_replace($vars, [$name, $tag->value], $this->template);
         }
 
         return $output;
@@ -711,10 +716,10 @@ class OpenGraph
     /**
      * Returns the last tag in the lists of tags with matching name
      * 
-     * @param  string               $name The name of the tag
-     * @return OpenGraphTag|null          Returns the tag object or null
+     * @param  string            $name The name of the tag
+     * @return OpenGraphTag|null       Returns the tag object or null
      */
-    public function lastTag($name)
+    public function lastTag(string $name)
     {
         $lastTag = null;
 
@@ -733,7 +738,7 @@ class OpenGraph
      * @param  string|DateTime $date The date (string or DateTime)
      * @return string
      */
-    protected function convertDate($date)
+    protected function convertDate(string $date) : string
     {
         if (is_a($date, 'DateTime')) {
             return (string) $date->format(DateTime::ISO8601);
