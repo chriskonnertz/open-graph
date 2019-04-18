@@ -12,7 +12,7 @@ Library that assists in building Open Graph meta tags.
 Add `chriskonnertz/open-graph` to `composer.json` with a text editor:
 
 ```
-"chriskonnertz/open-graph": "~1"
+"chriskonnertz/open-graph": "~2"
 ```
     
 Or via a console:
@@ -23,7 +23,7 @@ composer require chriskonnertz/open-graph
 
 In the future use `composer update` to update to the latest version of Open Graph Builder.
 
-> This library supports PHP >=5.3.
+> This library requires PHP >=7.0.
 
 ### Framework Support
 
@@ -32,10 +32,10 @@ In Laravel 5.0-5.4 you have to edit your `config/app.php` config file.
 You can either add an alias to the object so you can create a new instance via `new OpenGraph()` ...
 
 ```php
-'aliases' => array(
+'aliases' => [
     ...
     'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraph',
-),
+],
 ```
 
 ...or an alias to the facade (this is what happens in Laravel >=5.5 via package auto-discovery) so you
@@ -43,17 +43,17 @@ do not have to create the instance by yourself but you can access it via pseudo-
 If you choose this path you also have to add the service provider to the config file:
 
 ```php
-'aliases' => array(
+'aliases' => [
     ...
     'OpenGraph' => 'ChrisKonnertz\OpenGraph\OpenGraphFacade',
-),
+],
 
 ...
 
-'providers' => array(
+'providers' => [
     ...
     'ChrisKonnertz\OpenGraph\OpenGraphServiceProvider',
-),
+],
 ```
 
 > If you need to reset the underlying instance of the facade (the `OpenGraph` object), call `OpenGraph::clear()`.
@@ -75,8 +75,6 @@ Render these tags in a template as follows:
 ```
 {!! $og->renderTags() !!}
 ```
-
-> In Laravel 4 you have to use ``{{ ... }}`` tags to avoid escaping.
 
 Providing Open Graph tags enriches web pages. The downside is some extra time to spend, because every model has its own way to generate these tags. It's also important to follow the [official protocol](http://ogp.me/). Read the documentation to learn more about the tags that are available and the values they support or [check out examples](https://github.com/niallkennedy/open-graph-protocol-examples). Please note that this implementation sticks to the specification of OGP.me and does not support the enhancements created by Facebook.
 

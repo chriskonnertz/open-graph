@@ -4,6 +4,9 @@ namespace ChrisKonnertz\OpenGraph;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Facade for Laravel integration
+ */
 class OpenGraphFacade extends Facade 
 {
 
