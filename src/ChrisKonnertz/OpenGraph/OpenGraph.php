@@ -173,7 +173,7 @@ class OpenGraph
      * @param bool     $prefixed   Add the "og"-prefix?
      * @return OpenGraph
      */
-    public function attributesstring (
+    public function attributes (
         string $tagName, 
         array $attributes = [], 
         array $valid = [], 
