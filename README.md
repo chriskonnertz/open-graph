@@ -229,4 +229,4 @@ $value = $tag['value'];
 
 ## Status
 
-Status of this repository: **Maintained**. Create an issue and you will get a response, usually within 48 hours.
+Status of this repository: **Maintained**. If you create an issue you will get a response usually within 48 hours.
