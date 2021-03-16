@@ -567,7 +567,7 @@ class OpenGraph
             ];
 
             $tag = $this->lastTag('type');
-            if ($tag and starts_with($tag->value, 'video.')) {
+            if ($tag and strpos($tag->value, 'video.') === 0) {
                 $specialValid = [
                     'actor',
                     'role',

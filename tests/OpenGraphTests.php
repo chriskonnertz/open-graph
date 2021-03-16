@@ -5,10 +5,10 @@
  */
 class OpenGraphTest extends \PHPUnit\Framework\TestCase
 {
-    
+
     /**
      * Creates and returns a new instance
-     * 
+     *
      * @return ChrisKonnertz\OpenGraph\OpenGraph
      */
     protected function getInstance()
@@ -18,7 +18,7 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creates and returns a new instance with dummy values
-     * 
+     *
      * @return ChrisKonnertz\OpenGraph\OpenGraph
      */
     protected function getDummy()
@@ -110,12 +110,12 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
         $og = $this->getDummy();
 
         mb_internal_encoding('UTF-8');
-        
+
         $char = '☺'; // Unicode char U+263A (white smiley)
 
         $og->description($char, 1);
         $tag = $og->lastTag('description');
-        
+
         $this->assertEquals($tag->value, $char);
     }
 
@@ -130,10 +130,26 @@ class OpenGraphTest extends \PHPUnit\Framework\TestCase
         $og->clear();
 
         $url = 'http://example.org/';
-        putenv('APP_URL='.$url);
+        putenv('APP_URL=' . $url);
         $og->url($url);
         $tag = $og->lastTag('url');
         $this->assertEquals($tag->value, $url);
+    }
+
+    public function testVideoAttributes()
+    {
+        $og = $this->getDummy();
+        $og->video('https://example.org/video.swf', [
+            'width' => 300,
+            'height' => 200,
+            'type' => 'application/x-shockwave-flash'
+        ]);
+
+        $tag = $og->lastTag('video');
+        $this->assertEquals($tag->value, 'https://example.org/video.swf');
+
+        $tag = $og->lastTag('video:type');
+        $this->assertEquals($tag->value, 'application/x-shockwave-flash');
     }
 
 }
